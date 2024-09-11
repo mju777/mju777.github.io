@@ -107,6 +107,30 @@ setTimeout(function() {
            // 将用户输入的数字和当前日期时间拼接，并显示在页面上
            document.getElementById("result").innerHTML = text + number + "." + formattedDateTime;
        }
+
+
+   // 新建 copyName 函数
+       function copyName() {
+           var copyText = "知识体系多叉树";
+
+           var tempInput = document.createElement("textarea");
+           tempInput.value = copyText;
+
+           document.body.appendChild(tempInput);
+
+           tempInput.select();
+           document.execCommand("copy");
+
+           document.body.removeChild(tempInput);
+
+           document.getElementById("copy-success").style.display = "block";
+
+           setTimeout(function() {
+               document.getElementById("copy-success").style.display = "none";
+           }, 1000);
+       }
+
+      
    </script>
 </head>
 <body>
@@ -116,6 +140,13 @@ setTimeout(function() {
     <p id="result"></p>
     <button onclick="copyToClipboard()">复制</button>
         <h1 id="copy-success">复制成功！</h1>
-
+      <div style="text-align: center; margin-top: 20px;">
+        <ol>
+            <li><a href="https://bot.360.com/chat/8493f1681af94f958f8296065daf07e4?src=360bot_se_left" target="_blank">360ai</a></li>
+            <!-- 可以添加更多的链接 -->
+        </ol>
+    </div>
+    <!-- 添加新的复制按钮 -->
+    <button id="knowledge-button" onclick="copyName()">知识</button>
 </body>
 </html>
