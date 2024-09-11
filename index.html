@@ -1,1 +1,121 @@
-111
+<!DOCTYPE html>
+<html>
+<head>
+   <title>输入数字并显示日期时间</title>
+   <style>
+       /* 可以添加一些CSS样式来美化页面 */
+            /* 可以添加一些CSS样式来美化页面 */
+            body {
+           font-family: Arial, sans-serif;
+           background-color: #f0f0f0;
+           margin: 0;
+           padding: 0;
+       }
+       h1 {
+           color: #333;
+           text-align: center;
+           padding: 20px;
+       }
+       input[type="text"] {
+           padding: 10px;
+           font-size: 16px;
+           border: 1px solid #ddd;
+           border-radius: 5px;
+           margin: 10px;
+       }
+       button {
+           padding: 10px 20px;
+           font-size: 16px;
+           background-color: #4CAF50;
+           color: #fff;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+           margin: 10px;
+       }
+       button:hover {
+           background-color: #45a049;
+       }
+       #result {
+           margin: 20px;
+           padding: 10px;
+           border: 1px solid #ddd;
+           border-radius: 5px;
+       }
+       #copy-button {
+           background-color: #008CBA;
+       }
+       #copy-button:hover {
+           background-color: #006C8A;
+       }
+
+         /* 可以添加一些CSS样式来美化页面 */
+         #copy-success {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           text-align: center;
+           padding: 10px 0;
+           background-color: #4CAF50;
+           color: #fff;
+           display: none;
+       }
+   </style>
+   <script>
+       function copyToClipboard() {
+           // 获取要复制的文本
+           var copyText = document.getElementById("result").innerText;
+
+           // 创建一个临时的文本区域元素
+           var tempInput = document.createElement("textarea");
+           tempInput.value = copyText;
+
+           // 将临时文本区域添加到文档中
+           document.body.appendChild(tempInput);
+
+           // 选择并复制文本
+           tempInput.select();
+           document.execCommand("copy");
+
+           // 从文档中移除临时文本区域
+           document.body.removeChild(tempInput);
+
+             // 显示复制成功的提示
+           document.getElementById("copy-success").style.display = "block";
+
+// 一秒钟后隐藏提示
+setTimeout(function() {
+    document.getElementById("copy-success").style.display = "none";
+}, 1000);
+           
+       }
+
+       function showDateTime() {
+           // 获取用户输入的数字
+           var number = document.getElementById("numberInput").value;
+
+           // 获取用户输入的文本
+           var text = document.getElementById("textInput").value;
+
+           // 获取当前日期和时间，并格式化为字符串，精确到分钟
+           var now = new Date();
+           // 使用 slice 方法来获取年份的后两位
+           var year = String(now.getFullYear()).slice(-2);
+           var formattedDateTime = year + "." + (now.getMonth() + 1) + "." + now.getDate() + "." + now.getHours() + "." + now.getMinutes();
+
+           // 将用户输入的数字和当前日期时间拼接，并显示在页面上
+           document.getElementById("result").innerHTML = text + number + "." + formattedDateTime;
+       }
+   </script>
+</head>
+<body>
+    <input type="text" id="textInput" placeholder="请输入文本">
+    <input type="text" id="numberInput" placeholder="请输入一个数字">
+    <button onclick="showDateTime()">提交</button>
+    <p id="result"></p>
+    <button onclick="copyToClipboard()">复制</button>
+        <h1 id="copy-success">复制成功！</h1>
+
+</body>
+</html>
