@@ -197,11 +197,12 @@ setTimeout(function() {
     <div><input type="text" id="textInput" placeholder="请输入文本"></div>
         <div><input type="text" id="numberInput" value="1" placeholder="请输入一个数字"></div>
       <!-- 添加新的复制按钮 -->
+   
+            <div><button onclick="showDateTime()">提交</button></div>
+            <div><button onclick="copyToClipboard()">复制</button></div>
+            <div><p id="result"></p></div>
       <div><button id="knowledge-button" onclick="copyName()">知识</button></div>
         <div><button id="information-button" onclick="copyInformation()">资料</button></div>
-            <div><button onclick="showDateTime()">提交</button></div>
-            <div><p id="result"></p></div>
-    <button onclick="copyToClipboard()">复制</button>
         <h1 id="copy-success">复制成功！</h1>
       <div style="text-align: center; margin-top: 20px;">
         <ol><h1>some better friends</h1>
