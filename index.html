@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>YU'S IO&AI&01</title>
+   <title>输入数字并显示日期时间</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -168,6 +168,8 @@ setTimeout(function() {
                document.getElementById("copy-success").style.display = "none";
            }, 222);
        }
+
+      
  function copyInformation() {
            var copyText = "相关资料多叉树";
 
@@ -192,13 +194,13 @@ setTimeout(function() {
    </script>
 </head>
 <body>
-    <input type="text" id="textInput" placeholder="请输入文本">
-    <input type="text" id="numberInput" value="1" placeholder="请输入一个数字">
+    <div><input type="text" id="textInput" placeholder="请输入文本"></div>
+        <div><input type="text" id="numberInput" value="1" placeholder="请输入一个数字"></div>
       <!-- 添加新的复制按钮 -->
-    <button id="knowledge-button" onclick="copyName()">知识</button>
-    <button id="information-button" onclick="copyInformation()">资料</button>
-    <button onclick="showDateTime()">提交</button>
-    <p id="result"></p>
+      <div><button id="knowledge-button" onclick="copyName()">知识</button></div>
+        <div><button id="information-button" onclick="copyInformation()">资料</button></div>
+            <div><button onclick="showDateTime()">提交</button></div>
+            <div><p id="result"></p></div>
     <button onclick="copyToClipboard()">复制</button>
         <h1 id="copy-success">复制成功！</h1>
       <div style="text-align: center; margin-top: 20px;">
