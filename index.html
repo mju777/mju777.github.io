@@ -204,7 +204,25 @@
                 document.getElementById("copy-success").style.display = "none";
             }, 222);
         }
-        
+        function utf16to8(str) {  
+    var out, i, len, c;  
+    out = "";  
+    len = str.length;  
+    for(i = 0; i < len; i++) {  
+    c = str.charCodeAt(i);  
+    if ((c >= 0x0001) && (c <= 0x007F)) {  
+        out += str.charAt(i);  
+    } else if (c > 0x07FF) {  
+        out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));  
+        out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));  
+        out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));  
+    } else {  
+        out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));  
+        out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));  
+    }  
+    }  
+    return out;  
+}  
               
     </script>
 </head>
@@ -246,7 +264,7 @@
             $('#text').on('input', function() {
                 var text = $(this).val();
                 if (text) {
-                    $('#qrcode').empty().qrcode(text);
+                    $('#qrcode').empty().qrcode(utf16to8(text));
                 } else {
                     $('#qrcode').empty();
                 }
@@ -5162,7 +5180,7 @@ Web 开发：
 
             <li><a href="https://democrats.org/" target="_blank">Democrats</a></li>
             <li><a href="https://www.gop.gov/" target="_blank">Republicans</a></li>
-            <li><a href="" target="_blank">TODO</a></li>
+            <li><a href="https://blog.csdn.net/zhuxiangyu2012/article/details/14522173" target="_blank">jsqrcode中文</a></li>
             <li><a href="" target="_blank">TODO</a></li>
             <li><a href="" target="_blank">TODO</a></li>
             <li><a href="" target="_blank">TODO</a></li>
