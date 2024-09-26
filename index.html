@@ -249,13 +249,25 @@ setTimeout(function() {
     <label for="text">请输入链接：</label>
     <input type="text" id="text">
 </div>
-<div id="qrcode"></div>
+<div class="qrcode" id="qrcode"></div>
 <script>
     $(function() {
         $('#text').on('input', function() {
             var text = $(this).val();
             if (text) {
                 $('#qrcode').empty().qrcode(text);
+                // 使二维码居中
+       var container = $('.qr-container');
+       var containerWidth = container.width();
+       var containerHeight = container.height();
+       var windowWidth = $(window).width();
+       var windowHeight = $(window).height();
+       var top = (windowHeight - containerHeight) / 2;
+       var left = (windowWidth - containerWidth) / 2;
+       container.position({
+         my: 'center',
+         at: 'center',
+         of: window
             } else {
                 $('#qrcode').empty();
             }
