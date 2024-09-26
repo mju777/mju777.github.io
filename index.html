@@ -1,416 +1,258 @@
+
 <!DOCTYPE html>
 <html>
+
 <head>
-   <title>YU'S IO & AI & 01</title>
+    <title>YU'S IO & AI & 01</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta charset="UTF-8">
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <style>
+        #qrcode {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+    </style>
 
-
-<style>
-    #qrcode {
-        width: 222px;
-        height: 222px;
-       magrin:0 auto;
-    }
-</style>
-   
-   <style>
-       /* 可以添加一些CSS样式来美化页面 */
-            /* 可以添加一些CSS样式来美化页面 */
-          body {
-           font-family: Arial, sans-serif;
-           background-color: #f0f0f0;
-           margin: 0;
-           padding: 0;
-           text-align: center; 
-
-       }
-       h1 {
-        text-align: center;
-
-           color: #333;
-           text-align: center;
-           padding: 20px;
-       }
-       input[type="text"] {
-           padding: 10px;
-           font-size: 16px;
-           border: 1px solid #ddd;
-           border-radius: 5px;
-           margin: 10px;
-       }
-       button {
-           padding: 10px 20px;
-           font-size: 16px;
-           background-color: #4CAF50;
-           color: #fff;
-           border: none;
-           border-radius: 5px;
-           cursor: pointer;
-           margin: 10px;
-       }
-       button:hover {
-           background-color: #45a049;
-       }
-       #result {
-           margin: 20px;
-           padding: 10px;
-           border: 1px solid #ddd;
-           border-radius: 5px;
-       }
-       #copy-button {
-           background-color: #008CBA;
-       }
-       #copy-button:hover {
-           background-color: #006C8A;
-       }
-
-         /* 可以添加一些CSS样式来美化页面 */
-         #copy-success {
-           position: absolute;
-           top: 0;
-           left: 0;
-           width: 100%;
-           text-align: center;
-           padding: 10px 0;
-           background-color: #4CAF50;
-           color: #fff;
-           display: none;
-       }
-   </style>
-   <script>
-       function copyToClipboard() {
-           // 获取要复制的文本
-           var copyText = document.getElementById("result").innerText;
-
-           // 创建一个临时的文本区域元素
-           var tempInput = document.createElement("textarea");
-           tempInput.value = copyText;
-
-           // 将临时文本区域添加到文档中
-           document.body.appendChild(tempInput);
-
-           // 选择并复制文本
-           tempInput.select();
-           document.execCommand("copy");
-
-           // 从文档中移除临时文本区域
-           document.body.removeChild(tempInput);
-
-             // 显示复制成功的提示
-           document.getElementById("copy-success").style.display = "block";
-
-// 一秒钟后隐藏提示
-setTimeout(function() {
-    document.getElementById("copy-success").style.display = "none";
-}, 222);
+    <style>
+        /* 可以添加一些CSS样式来美化页面 */
+             /* 可以添加一些CSS样式来美化页面 */
+           body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center; 
+        
+        }
+        h1 {
+         text-align: center;
+        
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #copy-button {
+            background-color: #008CBA;
+        }
+        #copy-button:hover {
+            background-color: #006C8A;
+        }
+        
+          /* 可以添加一些CSS样式来美化页面 */
+          #copy-success {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            background-color: #4CAF50;
+            color: #fff;
+            display: none;
+        }
+    </style>
+    <script>
+        function copyToClipboard() {
+            // 获取要复制的文本
+            var copyText = document.getElementById("result").innerText;
+        
+            // 创建一个临时的文本区域元素
+            var tempInput = document.createElement("textarea");
+            tempInput.value = copyText;
+        
+            // 将临时文本区域添加到文档中
+            document.body.appendChild(tempInput);
+        
+            // 选择并复制文本
+            tempInput.select();
+            document.execCommand("copy");
+        
+            // 从文档中移除临时文本区域
+            document.body.removeChild(tempInput);
+        
+              // 显示复制成功的提示
+            document.getElementById("copy-success").style.display = "block";
+        
+        // 一秒钟后隐藏提示
+        setTimeout(function() {
+            document.getElementById("copy-success").style.display = "none";
+        }, 222);
+            
+        }
+        
+        function showDateTime() {
+            // 获取用户输入的数字
+            var number = document.getElementById("numberInput").value;
+        
+            // 获取用户输入的文本
+            var text = document.getElementById("textInput").value;
+        
+            // 获取当前日期和时间，并格式化为字符串，精确到分钟
+            var now = new Date();
+            // 使用 slice 方法来获取年份的后两位
+            var year = String(now.getFullYear());
            
-       }
-
-       function showDateTime() {
-           // 获取用户输入的数字
-           var number = document.getElementById("numberInput").value;
-
-           // 获取用户输入的文本
-           var text = document.getElementById("textInput").value;
-
-           // 获取当前日期和时间，并格式化为字符串，精确到分钟
-           var now = new Date();
-           // 使用 slice 方法来获取年份的后两位
-           var year = String(now.getFullYear());
-   
-
-            // Bug 修复：添加秒显示
-            var seconds = now.getSeconds();
-           if (seconds < 10) {
-               seconds = '0' + seconds;
-           }
-                   // 添加在小于10分钟的前面加上零
-       var minutes = now.getMinutes();
-       if (minutes < 10) {
-           minutes = '0' + minutes;
-       }
-             // 添加在小于10时的前面加上零
-             var hours = now.getHours();
-       if (hours < 10) {
-           hours = '0' + hours;
-       }
-              // 添加在小于10日的前面加上零
-              var date = now.getDate();
-       if (date < 10) {
-           date = '0' + date;
-       }
-
-    // 添加在小于10月的月份前加上零
-    var month = now.getMonth() + 1;
-           if (month < 10) {
-               month = '0' + month;
-           }
-
-     
-       var   formattedDateTime = year + "." + month + "." + date + "." + hours + "." + minutes + "." + seconds;
-       document.getElementById("result").innerHTML = text +"_"+ number + "." + formattedDateTime;
-
-           
-           // 调用复制到剪贴板的函数
-           copyToClipboard();
-       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-   // 新建 copyName 函数
-       function copyName() {
-           var copyText = "知识体系多叉树";
-
-           var tempInput = document.createElement("textarea");
-           tempInput.value = copyText;
-
-           document.body.appendChild(tempInput);
-
-           tempInput.select();
-           document.execCommand("copy");
-
-           document.body.removeChild(tempInput);
-
-           document.getElementById("copy-success").style.display = "block";
-
-           setTimeout(function() {
-               document.getElementById("copy-success").style.display = "none";
-           }, 222);
-       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-      
- function copyInformation() {
-           var copyText = "相关资料多叉树";
-
-           var tempInput = document.createElement("textarea");
-           tempInput.value = copyText;
-
-           document.body.appendChild(tempInput);
-
-           tempInput.select();
-           document.execCommand("copy");
-
-           document.body.removeChild(tempInput);
-
-           document.getElementById("copy-success").style.display = "block";
-
-           setTimeout(function() {
-               document.getElementById("copy-success").style.display = "none";
-           }, 222);
-       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-      
-   </script>
+        
+             // Bug 修复：添加秒显示
+             var seconds = now.getSeconds();
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+            }
+                    // 添加在小于10分钟的前面加上零
+        var minutes = now.getMinutes();
+        if (minutes < 10) {
+            minutes = '0' + minutes;
+        }
+              // 添加在小于10时的前面加上零
+              var hours = now.getHours();
+        if (hours < 10) {
+            hours = '0' + hours;
+        }
+               // 添加在小于10日的前面加上零
+               var date = now.getDate();
+        if (date < 10) {
+            date = '0' + date;
+        }
+        
+            // 添加在小于10月的月份前加上零
+            var month = now.getMonth() + 1;
+            if (month < 10) {
+                month = '0' + month;
+            }
+        
+             
+        
+        
+        
+        var   formattedDateTime = year + "." + month + "." + date + "." + hours + "." + minutes + "." + seconds;
+        document.getElementById("result").innerHTML = text +"_"+ number + "." + formattedDateTime;
+        
+            
+            // 调用复制到剪贴板的函数
+            copyToClipboard();
+        }
+        
+        
+           // 新建 copyName 函数
+        function copyName() {
+            var copyText = "知识体系多叉树";
+        
+            var tempInput = document.createElement("textarea");
+            tempInput.value = copyText;
+        
+            document.body.appendChild(tempInput);
+        
+            tempInput.select();
+            document.execCommand("copy");
+        
+            document.body.removeChild(tempInput);
+        
+            document.getElementById("copy-success").style.display = "block";
+        
+            setTimeout(function() {
+                document.getElementById("copy-success").style.display = "none";
+            }, 222);
+        }
+        
+              
+         function copyInformation() {
+            var copyText = "相关资料多叉树";
+        
+            var tempInput = document.createElement("textarea");
+            tempInput.value = copyText;
+        
+            document.body.appendChild(tempInput);
+        
+            tempInput.select();
+            document.execCommand("copy");
+        
+            document.body.removeChild(tempInput);
+        
+            document.getElementById("copy-success").style.display = "block";
+        
+            setTimeout(function() {
+                document.getElementById("copy-success").style.display = "none";
+            }, 222);
+        }
+        
+              
+    </script>
 </head>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
 <body>
     <div><input type="text" id="textInput" placeholder="请输入文本"></div>
-        <div><input type="text" id="numberInput" value="1" placeholder="请输入一个数字"></div>
-      <!-- 添加新的复制按钮 -->
-               <div><p id="result"></p></div>
-            <div><button onclick="showDateTime()">提交</button></div>
-            <div><button onclick="copyToClipboard()">复制</button></div>
-      <div><button id="knowledge-button" onclick="copyName()">知识</button></div>
-        <div><button id="information-button" onclick="copyInformation()">资料</button></div>
-        <h1 id="copy-success">复制成功！</h1>
-        <form action="https://www.baidu.com/s" method="get">
-            <!-- 创建一个输入框，用于输入搜索关键词 -->
-            <input type="text" name="wd" placeholder="请输入关键词">
-            <!-- 创建一个提交按钮，用于提交搜索表单 -->
-            <input type="submit" value="百度一下">
-        </form>
-         <!-- 增加 Bing 搜索框 -->
-         <form action="https://www.bing.com/search" method="get">
-            <input type="text" name="q" placeholder="请输入关键词">
-            <input type="submit" value="Bing 搜索">
-        </form>
+    <div><input type="text" id="numberInput" value="1" placeholder="请输入一个数字"></div>
+    <!-- 添加新的复制按钮 -->
+    <div>
+        <p id="result"></p>
+    </div>
+    <div><button onclick="showDateTime()">提交</button></div>
+    <div><button onclick="copyToClipboard()">复制</button></div>
+    <div><button id="knowledge-button" onclick="copyName()">知识</button></div>
+    <div><button id="information-button" onclick="copyInformation()">资料</button></div>
+    <h1 id="copy-success">复制成功！</h1>
+    <form action="https://www.baidu.com/s" method="get">
+        <!-- 创建一个输入框，用于输入搜索关键词 -->
+        <input type="text" name="wd" placeholder="请输入关键词">
+        <!-- 创建一个提交按钮，用于提交搜索表单 -->
+        <input type="submit" value="百度一下">
+    </form>
+    <!-- 增加 Bing 搜索框 -->
+    <form action="https://www.bing.com/search" method="get">
+        <input type="text" name="q" placeholder="请输入关键词">
+        <input type="submit" value="Bing 搜索">
+    </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-        
-        <h2>二维码生成器</h2>
-<p>输入你想要转换为二维码的文本：</p>
-<!-- 使用表单获取用户的输入文本 -->
-<div>
-    <label for="text">请输入链接：</label>
-    <input type="text" id="text">
-</div>
-<div id="qrcode"></div>
-<script>
-    $(function() {
-        $('#text').on('input', function() {
-            var text = $(this).val();
-            if (text) {
-                $('#qrcode').empty().qrcode(text);
-            } else {
-                $('#qrcode').empty();
-            }
+    <h2>二维码生成器</h2>
+    <p>输入你想要转换为二维码的文本：</p>
+    <!-- 使用表单获取用户的输入文本 -->
+    <div>
+        <label for="text">请输入链接：</label>
+        <input type="text" id="text">
+    </div>
+    <div id="qrcode"></div>
+    <script>
+        $(function() {
+            $('#text').on('input', function() {
+                var text = $(this).val();
+                if (text) {
+                    $('#qrcode').empty().qrcode(text);
+                } else {
+                    $('#qrcode').empty();
+                }
+            });
         });
-    });
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
+    </script>
         <div style="text-align: center; margin-top: 77px;">
         <h1>我的一天日程</h1>
         <ol>
