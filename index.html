@@ -9,6 +9,7 @@
 		<meta charset="UTF-8">
 		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
 
 		<style>
 			#qrcode {
@@ -795,91 +796,72 @@ function updateTime() {
 
 
 
-		<h1>QR Code Scanner</h1>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<style>
-			#video-container {
-            width: 100%;
-            height: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #qrscresult {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-    </style>
-
-
-		<script>
-			// script.js
-Quagga.init({
-inputStream: {
-    name: "Live",
-    type: "LiveStream",
-    target: document.querySelector('#video'),
-    constraints: {
-        facingMode: "environment" // 使用后置摄像头
-    }
-},
-decoder: {
-    readers: ["code_128_reader"] // 可以根据需要添加更多的二维码类型
-}
-}, function(err) {
-if (err) {
-    console.error(err);
-    return;
-}
-Quagga.start();
-});
-
-Quagga.onDetected(function(result) {
-var code = result.codeResult.code;
-document.getElementById('qrscresult').innerText = "扫描到的二维码：" + code;
-});
-
-    // 
-</script>
-
-
-
-
-
-
-
-
-
-
-		<div id="video-container">
-			<video id="video"
-				   width="640"
-				   height="480"
-				   autoplay></video>
-		</div>
-
-		<div id="qrscresult"></div>
-
-
-
-
-
-
-
+        <style>
+            #video-container {
+                width: 100%;
+                height: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            video {
+                width: 640px;
+                height: 480px;
+            }
+            #result {
+                margin-top: 20px;
+                text-align: center;
+            }
+        </style>
+        <h2>摄像头扫描</h2>
+        <div id="video-container">
+            <video id="video" autoplay></video>
+        </div>
+        <div id="qrscresult"></div>
+        <script>
+            // 检查浏览器是否支持 getUserMedia API
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                // 请求访问摄像头
+                navigator.mediaDevices.getUserMedia({ video: true })
+                  .then(function(stream) {
+                        // 将视频流设置为 video 元素的源
+                        var video = document.getElementById('video');
+                        video.srcObject = stream;
+                        video.play();
+                        // 初始化 QuaggaJS 扫描器
+                        Quagga.init({
+                            inputStream: {
+                                name: "Live",
+                                type: "LiveStream",
+                                target: video,
+                                constraints: {
+                                    facingMode: "environment" // 使用后置摄像头
+                                }
+                            },
+                            decoder: {
+                                readers: ["code_128_reader"] // 可以根据需要添加更多的二维码类型
+                            }
+                        }, function(err) {
+                            if (err) {
+                                console.error(err);
+                                return;
+                            }
+                            Quagga.start();
+                        });
+                   })
+                  .catch(function(error) {
+                        console.error('无法访问摄像头: ', error);
+                    });
+            } else {
+                console.error('getUserMedia API 不支持');
+            }
+    
+            // 处理扫描到的二维码
+            Quagga.onDetected(function(result) {
+                var code = result.codeResult.code;
+                document.getElementById('qrscresult').innerText = "扫描到的二维码：" + code;
+            });
+        </script>
 
 
 
@@ -1053,6 +1035,10 @@ document.getElementById('qrscresult').innerText = "扫描到的二维码：" + c
 				<li>
 					<a href="https://www.txttool.com/"
 					   target="_blank">文本工具</a>
+				</li>
+                <li>
+					<a href="https://www.onlinegdb.com/"
+					   target="_blank">onlinegdb</a>
 				</li>
 				<li>
 					<a href="https://www.qianbo.com.cn/Tool/Beautify/Html-Formatter.html"
@@ -20117,8 +20103,8 @@ document.getElementById('qrscresult').innerText = "扫描到的二维码：" + c
 					   target="_blank">qianbo</a>
 				</li>
 				<li>
-					<a href=""
-					   target="_blank">TODO</a>
+					<a href="https://www.onlinegdb.com/"
+					   target="_blank">onlinegdb</a>
 				</li>
 				<li>
 					<a href=""
