@@ -204,6 +204,36 @@
                 document.getElementById("copy-success").style.display = "none";
             }, 222);
         }
+    
+        // script.js
+Quagga.init({
+    inputStream: {
+        name: "Live",
+        type: "LiveStream",
+        target: document.querySelector('#video'),
+        constraints: {
+            facingMode: "environment" // 使用后置摄像头
+        }
+    },
+    decoder: {
+        readers: ["code_128_reader"] // 可以根据需要添加更多的二维码类型
+    }
+}, function(err) {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    Quagga.start();
+});
+
+Quagga.onDetected(function(result) {
+    var code = result.codeResult.code;
+    document.getElementById('result').innerText = "扫描到的二维码：" + code;
+});
+
+
+        
+        
         function utf16to8(str) {  
     var out, i, len, c;  
     out = "";  
@@ -250,6 +280,28 @@
         <input type="text" name="q" placeholder="请输入关键词">
         <input type="submit" value="Bing 搜索">
     </form>
+
+     <h2>QR Code Scanner</h2>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <style>
+        #video-container {
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #result {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+
+    <div id="video-container">
+        <video id="video" width="640" height="480" autoplay></video>
+    </div>
+    <div id="result"></div>
+    <script src="script.js"></script>
 
     <h2>二维码生成器</h2>
     <p>输入你想要转换为二维码的文本：</p>
