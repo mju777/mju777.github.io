@@ -8,7 +8,7 @@
 		<meta charset="UTF-8">
 		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
 
 		<style>
 			#qrcode {
@@ -761,6 +761,15 @@ function updateTime() {
 		</form>
 
 
+		<!-- 增加抖音搜索框 -->
+		<form action="https://www.douyin.com/search/"
+			  method="get">
+			<input type="text"
+				   name="keyword"
+				   placeholder="请输入关键词">
+			<input type="submit"
+				   value="抖音搜索">
+		</form>
 
 
 
@@ -830,9 +839,8 @@ function updateTime() {
 
 
 
-
-        <style>
-            #video-container {
+		<style>
+			#video-container {
                 width: 100%;
                 height: auto;
                 display: flex;
@@ -851,15 +859,18 @@ function updateTime() {
 
 
 
-        <h2>摄像头扫描</h2>
-        <div id="video-container">
-                <video id="video" autoplay width="200" height="200"></video>
-        </div>
+		<h2>摄像头扫描</h2>
+		<div id="video-container">
+			<video id="video"
+				   autoplay
+				   width="200"
+				   height="200"></video>
+		</div>
 
 
-        <div id="qrscresult">扫码中》》》</div>
-        <script>
-            // 检查浏览器是否支持 getUserMedia API
+		<div id="qrscresult">扫码中》》》</div>
+		<script>
+			// 检查浏览器是否支持 getUserMedia API
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 // 请求访问摄像头
                 navigator.mediaDevices.getUserMedia({ video: true })
@@ -922,15 +933,15 @@ function updateTime() {
 
 		<script>
 			$(function() {
-									            $('#text').on('input', function() {
-									                var text = $(this).val();
-									                if (text) {
-									                    $('#qrcode').empty().qrcode(utf16to8(text));
-									                } else {
-									                    $('#qrcode').empty();
-									                }
-									            });
-									        });
+												            $('#text').on('input', function() {
+												                var text = $(this).val();
+												                if (text) {
+												                    $('#qrcode').empty().qrcode(utf16to8(text));
+												                } else {
+												                    $('#qrcode').empty();
+												                }
+												            });
+												        });
 		</script>
 
 
@@ -989,49 +1000,61 @@ function updateTime() {
 				<li>休息/娱乐20:30-23:30</li>
 				<li>洗漱23:30-00:00</li>
 				<li>睡觉00:00-06:00</li>
-                <li>欢迎使用！如果您觉得对您有帮助，请考虑捐赠以支持我们的开发工作。</li>
-                <li>
-                        <img class="myimage" src="Alipay.jpg" alt="支付宝收款码" width="200">
-                </li>
-                <li>
-                    <img class="myimage" src="WeChat.png" alt="微信收款码" width="200">
-                </li>
+				<li>欢迎使用！如果您觉得对您有帮助，请考虑捐赠以支持我们的开发工作。</li>
+				<li>
+					<img class="myimage"
+						 src="Alipay.jpg"
+						 alt="支付宝收款码"
+						 width="200">
+				</li>
+				<li>
+					<img class="myimage"
+						 src="WeChat.png"
+						 alt="微信收款码"
+						 width="200">
+				</li>
 			</ol>
 		</div>
 
-<div style="text-align: center; margin-top: 77px;">
+		<div style="text-align: center; margin-top: 77px;">
 			<h1>我的一天日程</h1>
 			<ol>
 				<li>Get up from 5:00 to 6:00
-</li>
+				</li>
 				<li>Breakfast 7:00-8:00
-</li>
+				</li>
 				<li>Go to work/school 7:00-12:00
-</li>
+				</li>
 				<li>Work/study 7:00-12:00
-</li>
+				</li>
 				<li>Lunch 12:00-13:00
-</li>
+				</li>
 				<li>Continue to work/study 14:30-19:30
-</li>
+				</li>
 				<li>After work/school 19:30
-</li>
+				</li>
 				<li>Dinner 19:30-20:30
-</li>
+				</li>
 				<li>Break/Entertainment 20:30-23:30
-</li>
+				</li>
 				<li>Wash 23:30-00:00
-</li>
+				</li>
 				<li>Sleep 00:00-06:00
-</li>
-                <li>Welcome to use! If you think it is helpful to you, please consider donating to support our development work.
-</li>
-                <li>
-                        <img class="myimage" src="Alipay.jpg" alt="支付宝收款码" width="200">
-                </li>
-                <li>
-                    <img class="myimage" src="WeChat.png" alt="微信收款码" width="200">
-                </li>
+				</li>
+				<li>Welcome to use! If you think it is helpful to you, please consider donating to support our development work.
+				</li>
+				<li>
+					<img class="myimage"
+						 src="Alipay.jpg"
+						 alt="支付宝收款码"
+						 width="200">
+				</li>
+				<li>
+					<img class="myimage"
+						 src="WeChat.png"
+						 alt="微信收款码"
+						 width="200">
+				</li>
 			</ol>
 		</div>
 
@@ -1071,9 +1094,9 @@ function updateTime() {
 
 
 		<div style="text-align: center; margin-top: 20px;">
-            <h1>some better friends</h1>
+			<h1>some better friends</h1>
 			<ol>
-				
+
 				<li>
 					<a href="https://bot.360.com/chat/8493f1681af94f958f8296065daf07e4?src=360bot_se_left"
 					   target="_blank">360ai</a>
@@ -1124,7 +1147,7 @@ function updateTime() {
 					<a href="https://www.txttool.com/"
 					   target="_blank">文本工具</a>
 				</li>
-                <li>
+				<li>
 					<a href="https://www.onlinegdb.com/"
 					   target="_blank">onlinegdb</a>
 				</li>
