@@ -329,11 +329,13 @@
             // 使用 slice 方法来获取年份的后两位
             var year = String(now.getFullYear());
             var milliseconds = now.getMilliseconds();
-            if (milliseconds < 10) {
-                milliseconds = '00' + milliseconds;
-            }
+           
             if (milliseconds < 100) {
+		     if (milliseconds > 10) {
                 milliseconds = '0' + milliseconds;
+		     }else{
+                milliseconds = '00' + milliseconds;
+		     }
             }
              // Bug 修复：添加秒显示
              var seconds = now.getSeconds();
