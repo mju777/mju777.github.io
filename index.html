@@ -179,6 +179,13 @@
 
 
 		<script>
+
+
+
+
+
+
+
 			function copyToClipboard() {
             // 获取要复制的文本
             var copyText = document.getElementById("result").innerText;
@@ -323,11 +330,13 @@
             if (month < 10) {
                 month = '0' + month;
             }
-            
         
-            var   formattedDateTime = year + "." + month + "." + date + "." + hours + "." + minutes + "." + seconds +"." + milliseconds + "";
+             
         
-            document.getElementById("result").innerHTML = text +"_"+ number + "." + formattedDateTime;
+        
+        
+        var   formattedDateTime = year + "." + month + "." + date + "." + hours + "." + minutes + "." + seconds +"." + milliseconds + "";
+        document.getElementById("result").innerHTML = text +"_"+ number + "." + formattedDateTime;
         
             
             // 调用复制到剪贴板的函数
@@ -366,7 +375,6 @@
             document.body.appendChild(tempInput);
         
             tempInput.select();
-
             document.execCommand("copy");
         
             document.body.removeChild(tempInput);
@@ -448,8 +456,7 @@
 
 
 
-        
-            function utf16to8(str) {  
+        function utf16to8(str) {  
     var out, i, len, c;  
     out = "";  
     len = str.length;  
@@ -517,7 +524,8 @@ function updateTime() {
 
 	<body>
 
-        <h1>当前时间：<span id="showtime"></span></h1>
+		<h1>当前时间：<span id="showtime"></span>
+		</h1>
 
 
 
@@ -886,15 +894,15 @@ document.getElementById('qrscresult').innerText = "扫描到的二维码：" + c
 		<div id="qrcode"></div>
 		<script>
 			$(function() {
-						            $('#text').on('input', function() {
-						                var text = $(this).val();
-						                if (text) {
-						                    $('#qrcode').empty().qrcode(utf16to8(text));
-						                } else {
-						                    $('#qrcode').empty();
-						                }
-						            });
-						        });
+									            $('#text').on('input', function() {
+									                var text = $(this).val();
+									                if (text) {
+									                    $('#qrcode').empty().qrcode(utf16to8(text));
+									                } else {
+									                    $('#qrcode').empty();
+									                }
+									            });
+									        });
 		</script>
 
 
@@ -1046,7 +1054,7 @@ document.getElementById('qrscresult').innerText = "扫描到的二维码：" + c
 					<a href="https://www.txttool.com/"
 					   target="_blank">文本工具</a>
 				</li>
-                <li>
+				<li>
 					<a href="https://www.qianbo.com.cn/Tool/Beautify/Html-Formatter.html"
 					   target="_blank">qianbo</a>
 				</li>
