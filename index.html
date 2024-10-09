@@ -524,10 +524,18 @@ function updateTime() {
 
 
 
+        function calculateDays() {
+            var birthday = new Date(1997, 6, 2); // 注意：月份从0开始，所以7月是6
+            var today = new Date();
+            var timeDiff = Math.abs(today.getTime() - birthday.getTime());
+            var daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            var todiedaysnum = 36500-daysDiff;
+            document.getElementById("borndays").innerHTML = "您已经出生了 " + daysDiff + " 天。";
+            document.getElementById("todiedays").innerHTML = "离100岁还有" + todiedaysnum + " 天。";
+        }
 
 
-
-
+        calculateDays()
 
 
 
@@ -558,6 +566,8 @@ function updateTime() {
 	<body>
 
 		<h1>当前时间：<span id="showtime"></span>
+            <div id="borndays"></div>
+            <div id="todiedays"></div>
 		</h1>
 
 
