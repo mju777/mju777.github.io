@@ -9,7 +9,7 @@
 		<meta charset="UTF-8">
 		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
 
 		<style>
 			#qrcode {
@@ -658,6 +658,7 @@ function updateTime() {
 			<button id="knowledge-button"
 					onclick="copyName()">知识</button>
 		</div>
+
 		<div>
 			<button id="information-button"
 					onclick="copyInformation()">资料</button>
@@ -715,6 +716,8 @@ function updateTime() {
 			<input type="submit"
 				   value="百度一下">
 		</form>
+
+
 		<!-- 增加 Bing 搜索框 -->
 		<form action="https://www.bing.com/search"
 			  method="get">
@@ -796,8 +799,8 @@ function updateTime() {
 
 
 
-        <style>
-            #video-container {
+		<style>
+			#video-container {
                 width: 100%;
                 height: auto;
                 display: flex;
@@ -808,18 +811,24 @@ function updateTime() {
                 width: 640px;
                 height: 480px;
             }
-            #result {
+            #qrscresult {
                 margin-top: 20px;
                 text-align: center;
             }
         </style>
-        <h2>摄像头扫描</h2>
-        <div id="video-container">
-            <video id="video" autoplay></video>
-        </div>
-        <div id="qrscresult"></div>
-        <script>
-            // 检查浏览器是否支持 getUserMedia API
+
+
+
+		<h2>摄像头扫描</h2>
+		<div id="video-container">
+			<video id="video"
+				   autoplay></video>
+		</div>
+
+
+		<div id="qrscresult"></div>
+		<script>
+			// 检查浏览器是否支持 getUserMedia API
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 // 请求访问摄像头
                 navigator.mediaDevices.getUserMedia({ video: true })
@@ -869,22 +878,28 @@ function updateTime() {
 		<p>输入你想要转换为二维码的文本：</p>
 		<!-- 使用表单获取用户的输入文本 -->
 		<div>
-			<label for="text">请输入链接：</label>
+			<label for="text">请输入文本：</label>
 			<input type="text"
 				   id="text">
 		</div>
+
+
+
 		<div id="qrcode"></div>
+
+
+
 		<script>
 			$(function() {
-									            $('#text').on('input', function() {
-									                var text = $(this).val();
-									                if (text) {
-									                    $('#qrcode').empty().qrcode(utf16to8(text));
-									                } else {
-									                    $('#qrcode').empty();
-									                }
-									            });
-									        });
+												            $('#text').on('input', function() {
+												                var text = $(this).val();
+												                if (text) {
+												                    $('#qrcode').empty().qrcode(utf16to8(text));
+												                } else {
+												                    $('#qrcode').empty();
+												                }
+												            });
+												        });
 		</script>
 
 
@@ -943,13 +958,15 @@ function updateTime() {
 				<li>休息/娱乐20:30-23:30</li>
 				<li>洗漱23:30-00:00</li>
 				<li>睡觉00:00-06:00</li>
-                <li>欢迎使用！如果您觉得对您有帮助，请考虑捐赠以支持我们的开发工作。</li>
-                <li>
-                    <img src="Alipay.jpg" alt="支付宝收款码">
-                </li>
-                <li>
-                    <img src="WeChat.png" alt="微信收款码">
-                </li>
+				<li>欢迎使用！如果您觉得对您有帮助，请考虑捐赠以支持我们的开发工作。</li>
+				<li>
+					<img src="Alipay.jpg"
+						 alt="支付宝收款码">
+				</li>
+				<li>
+					<img src="WeChat.png"
+						 alt="微信收款码">
+				</li>
 			</ol>
 		</div>
 
@@ -991,8 +1008,9 @@ function updateTime() {
 
 
 		<div style="text-align: center; margin-top: 20px;">
+			<h1>some better friends</h1>
 			<ol>
-				<h1>some better friends</h1>
+
 				<li>
 					<a href="https://bot.360.com/chat/8493f1681af94f958f8296065daf07e4?src=360bot_se_left"
 					   target="_blank">360ai</a>
@@ -1043,7 +1061,7 @@ function updateTime() {
 					<a href="https://www.txttool.com/"
 					   target="_blank">文本工具</a>
 				</li>
-                <li>
+				<li>
 					<a href="https://www.onlinegdb.com/"
 					   target="_blank">onlinegdb</a>
 				</li>
@@ -2830,7 +2848,7 @@ function updateTime() {
 				</li>
 				<li>
 					<a href="https://www.36kr.com/column/4226"
-					   target="_blank">36 氪「未来美容」a>
+					   target="_blank">36 氪「未来美容」</a>
 				</li>
 				<li>
 					<a href="https://www.36kr.com/column/4227"
