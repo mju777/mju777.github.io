@@ -87,12 +87,15 @@
 
     /* 可以添加一些CSS样式来美化页面 */
     #copy-success {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-
-      padding: 10px 0;
+      position: fixed; /* 使用固定定位，使其悬浮在页面上 */
+      top: 50%; /* 垂直居中 */
+  left: 50%; /* 水平居中 */
+  transform: translate(-50%, -50%); /* 精确居中 */
+  background-color: #4CAF50; /* 背景颜色 */
+  color: white; /* 文字颜色 */
+  padding: 10px 20px; /* 内边距 */
+  border-radius: 5px; /* 圆角 */
+  z-index: 1000; /* 确保元素显示在最上层 */
       background-color: #4CAF50;
       color: #fff;
       display: none;
@@ -304,7 +307,7 @@
 
 
 
-    function showDateTime() {
+    function houzhui() {
       // 获取用户输入的数字
       var number = document.getElementById("numberInput").value;
 
@@ -356,13 +359,74 @@
 
 
       var formattedDateTime = year + "." + month + "." + date + "." + hours + "." + minutes + "." + seconds + "." + milliseconds + "";
-      document.getElementById("result").innerHTML = text + "_" + number + "." + formattedDateTime;
+       document.getElementById("result").innerHTML = "";
+      document.getElementById("result").innerHTML = text + "_" + number + "_" + formattedDateTime;
 
 
       // 调用复制到剪贴板的函数
       copyToClipboard();
     }
 
+
+ function qianzhui() {
+      // 获取用户输入的数字
+      var number = document.getElementById("numberInput").value;
+
+      // 获取用户输入的文本
+      var text = document.getElementById("textInput").value;
+
+      // 获取当前日期和时间，并格式化为字符串，精确到分钟
+      var now = new Date();
+      // 使用 slice 方法来获取年份的后两位
+      var year = String(now.getFullYear());
+      var milliseconds = now.getMilliseconds();
+
+      if (milliseconds < 100) {
+        if (milliseconds > 10) {
+          milliseconds = '0' + milliseconds;
+        } else {
+          milliseconds = '00' + milliseconds;
+        }
+      }
+      // Bug 修复：添加秒显示
+      var seconds = now.getSeconds();
+      if (seconds < 10) {
+        seconds = '0' + seconds;
+      }
+      // 添加在小于10分钟的前面加上零
+      var minutes = now.getMinutes();
+      if (minutes < 10) {
+        minutes = '0' + minutes;
+      }
+      // 添加在小于10时的前面加上零
+      var hours = now.getHours();
+      if (hours < 10) {
+        hours = '0' + hours;
+      }
+      // 添加在小于10日的前面加上零
+      var date = now.getDate();
+      if (date < 10) {
+        date = '0' + date;
+      }
+
+      // 添加在小于10月的月份前加上零
+      var month = now.getMonth() + 1;
+      if (month < 10) {
+        month = '0' + month;
+      }
+
+
+
+
+
+      var formattedDateTime = year + "." + month + "." + date + "." + hours + "." + minutes + "." + seconds + "." + milliseconds + "";
+   document.getElementById("result").innerHTML = "";
+      document.getElementById("result").innerHTML = formattedDateTime + text + "_" + number + "_";
+
+
+      // 调用复制到剪贴板的函数
+      copyToClipboard();
+    }
 
 
 
@@ -619,10 +683,13 @@
   <p id="result"></p>
 </div>
 <div>
-  <button onclick="showDateTime()">提交</button>
+  <button onclick="qianzhui()">作为前缀</button>
 </div>
 <div>
-  <button onclick="copyToClipboard()">复制</button>
+  <button onclick="houzhui()">作为后缀</button>
+</div>
+<div>
+  <button onclick="copyToClipboard()">再次复制</button>
 </div>
 
 
