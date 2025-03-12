@@ -467,7 +467,7 @@
 
       setTimeout(function () {
         document.getElementById("copy-success").style.display = "none";
-      }, 222);
+      }, 333);
     }
 
 
@@ -585,10 +585,6 @@
 
 
 
-
-
-
-
   </script>
 
 
@@ -632,9 +628,20 @@
   <input type="text" id="textInput" placeholder="请输入文本">
 </div>
 <div>
-  <input type="text" id="numberInput" value="1" placeholder="请输入数字版本号">
+	
+  <input type="text" id="numberInput"  placeholder="请输入数字版本号">
 </div>
-
+<script>
+		 var now = new Date();
+      // 使用 slice 方法来获取年份的后两位
+      var year = String(now.getFullYear());
+        // 进行计算
+        var result = year - 2024+1;
+        // 获取 HTML 元素
+        document.getElementById("numberInput").value = result;
+		
+	
+</script>
 
 
 
