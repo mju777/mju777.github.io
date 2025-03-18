@@ -358,9 +358,9 @@
 
 
 
-      var formattedDateTime = year + "." + month + "." + date + "." + hours + "." + minutes + "." + seconds + "." + milliseconds + "";
+      var formattedDateTime = year + "-" + month + "-" + date + "-" + hours + "-" + minutes + "-" + seconds + "-" + milliseconds + "";
        document.getElementById("result").innerHTML = "";
-      document.getElementById("result").innerHTML = text + "_" + number + "_" + formattedDateTime;
+      document.getElementById("result").innerHTML = text + "-" + number + "-" + formattedDateTime;
 
 
       // 调用复制到剪贴板的函数
@@ -419,9 +419,9 @@
 
 
 
-      var formattedDateTime = year + "." + month + "." + date + "." + hours + "." + minutes + "." + seconds + "." + milliseconds + "";
+      var formattedDateTime = year + "-" + month + "-" + date + "-" + hours + "-" + minutes + "-" + seconds + "-" + milliseconds + "";
    document.getElementById("result").innerHTML = "";
-      document.getElementById("result").innerHTML = formattedDateTime + text + "_" + number + "_";
+      document.getElementById("result").innerHTML = formattedDateTime + "-" + number + "-" +text;
 
 
       // 调用复制到剪贴板的函数
