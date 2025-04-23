@@ -13,22 +13,185 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js">
 		</script>
 		<style>
-			#qrcode { width: 200px; height: 200px; margin: 0 auto; } /* 可以添加一些CSS样式来美化页面
-			*/ /* 可以添加一些CSS样式来美化页面 */ body { font-family: Arial, sans-serif; background-color:
-			#f0f0f0; margin: 0; padding: 0; } h1 { color: #333; padding: 20px; } input[type="text"]
-			{ padding: 10px; font-size: 16px; border: 1px solid #ddd; border-radius:
-			5px; margin: 10px; } button { padding: 10px 20px; font-size: 16px; background-color:
-			#4CAF50; color: #fff; border: none; border-radius: 5px; cursor: pointer;
-			margin: 10px; } button:hover { background-color: #45a049; } #result { margin:
-			20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; } #copy-button
-			{ background-color: #008CBA; } #copy-button:hover { background-color: #006C8A;
-			} /* 可以添加一些CSS样式来美化页面 */ #copy-success { position: fixed; /* 使用固定定位，使其悬浮在页面上
-			*/ top: 50%; /* 垂直居中 */ left: 50%; /* 水平居中 */ transform: translate(-50%,
-			-50%); /* 精确居中 */ background-color: #4CAF50; /* 背景颜色 */ color: white; /*
-			文字颜色 */ padding: 10px 20px; /* 内边距 */ border-radius: 5px; /* 圆角 */ z-index:
-			1000; /* 确保元素显示在最上层 */ background-color: #4CAF50; color: #fff; display:
-			none; }
+		#qrcode
+{
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;
+} /* 可以添加一些CSS样式来美化页面
+			*/ /* 可以添加一些CSS样式来美化页面 */body
+{
+	font-family: Arial, sans-serif;
+	background-color: #f0f0f0;
+	margin: 0;
+	padding: 0;
+}
+
+h1
+{
+	color: #333;
+	padding: 20px;
+}
+
+input[type="text"]
+{
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	margin: 10px;
+}
+
+button
+{
+	padding: 10px 20px;
+	font-size: 16px;
+	background-color: #4CAF50;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 10px;
+}
+
+button:hover
+{
+	background-color: #45a049;
+}
+
+#result
+{
+	margin: 20px;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+#copy-button
+{
+	background-color: #008CBA;
+}
+
+#copy-button:hover
+{
+	background-color: #006C8A;
+} /* 可以添加一些CSS样式来美化页面 */#copy-success
+{
+	position: fixed;
+ /* 使用固定定位，使其悬浮在页面上
+			*/
+	top: 50%;
+ /* 垂直居中 */
+	left: 50%;
+ /* 水平居中 */
+	transform: translate(-50%,
+			-50%);
+ /* 精确居中 */
+	background-color: #4CAF50;
+ /* 背景颜色 */
+	color: white;
+ /*
+			文字颜色 */
+	padding: 10px 20px;
+ /* 内边距 */
+	border-radius: 5px;
+ /* 圆角 */
+	z-index: 1000;
+ /* 确保元素显示在最上层 */
+	background-color: #4CAF50;
+	color: #fff;
+	display: none;
+}
 		</style>
+		 <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #7f8c8d;
+            --accent-color: #3498db;
+            --transition-speed: 0.3s;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+            color: var(--primary-color);
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .nav-button {
+            position: relative;
+            display: inline-block;
+            padding: 1.25rem 2.5rem;
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+        
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-color);
+            transform: translateX(-100%);
+            transition: transform var(--transition-speed) ease;
+            z-index: -1;
+        }
+        
+        .nav-button:hover {
+            color: white;
+        }
+        
+        .nav-button:hover::before {
+            transform: translateX(0);
+        }
+        
+        .nav-button i {
+            margin-left: 0.5rem;
+            transition: transform var(--transition-speed) ease;
+        }
+        
+        .nav-button:hover i {
+            transform: translateX(0.25rem);
+        }
+        
+        .divider {
+            width: 100px;
+            height: 1px;
+            background-color: var(--secondary-color);
+            margin: 3rem auto;
+            opacity: 0.3;
+        }
+        
+        .caption {
+            font-size: 0.875rem;
+            color: var(--secondary-color);
+            letter-spacing: 0.1em;
+            margin-top: 1rem;
+        }
+    </style>
 		<script>
 			function copyToClipboard() {
 				// 获取要复制的文本
@@ -321,71 +484,7 @@
 			<input type="text" name="s" placeholder="请输入关键词">
 			<input type="submit" value="菜鸟工具搜索">
 		</form>
-		<!-- <style>
-		#video-container {
-		width: 100%;
-		height: auto;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		}
-		video {
-		width: 640px;
-		height: 480px;
-		}
-		#qrscresult {
-		margin-top: 20px;
-		text-align: center;
-		}
-		</style>
-		<h2>摄像头扫描</h2>
-		<div id="video-container">
-		<video id="video" autoplay width="200" height="200"></video>
-		</div>
-		<div id="qrscresult">扫码中》》》</div>
-		<script>
-		// 检查浏览器是否支持 getUserMedia API
-		if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-		// 请求访问摄像头
-		navigator.mediaDevices.getUserMedia({ video: true })
-		.then(function (stream) {
-		// 将视频流设置为 video 元素的源
-		var video = document.getElementById('video');
-		video.srcObject = stream;
-		video.play();
-		// 初始化 QuaggaJS 扫描器
-		Quagga.init({
-		inputStream: {
-		name: "Live",
-		type: "LiveStream",
-		target: video,
-		constraints: {
-		facingMode: "environment" // 使用后置摄像头
-		}
-		},
-		decoder: {
-		readers: ["code_128_reader"] // 可以根据需要添加更多的二维码类型
-		}
-		}, function (err) {
-		if (err) {
-		console.error(err);
-		return;
-		}
-		Quagga.start();
-		});
-		})
-		.catch(function (error) {
-		console.error('无法访问摄像头: ', error);
-		});
-		} else {
-		console.error('getUserMedia API 不支持');
-		}
-		// 处理扫描到的二维码
-		Quagga.onDetected(function (result) {
-		var code = result.codeResult.code;
-		document.getElementById('qrscresult').innerText = "扫描到的二维码：" + code;
-		});
-		</script> -->
+	
 		<h2>
 			二维码生成器
 		</h2>
@@ -414,66 +513,7 @@
 				});
 			});
 		</script>
-		<!-- <div style="text-align: center; margin-top: 777px;">
-		<h1>我的一天日程</h1>
-		<ol>
-		<li>起床5:00-6:00</li>
-		<li>吃早餐7:00-8:00</li>
-		<li>上班/上学7:00-12:00</li>
-		<li>工作/学习7:00-12:00</li>
-		<li>吃午饭12:00-13:00</li>
-		<li>继续工作/学习14:30-19:30</li>
-		<li>下班/放学19:30</li>
-		<li>吃晚饭19:30-20:30</li>
-		<li>休息/娱乐20:30-23:30</li>
-		<li>洗漱23:30-00:00</li>
-		<li>睡觉00:00-06:00</li>
-		<li>欢迎使用！如果您觉得对您有帮助，请考虑捐赠以支持我们的开发工作。</li>
-		<li>
-		<img class="myimage" src="Alipay.jpg" alt="支付宝收款码" width="200">
-		</li>
-		<li>
-		<img class="myimage" src="WeChat.png" alt="微信收款码" width="200">
-		</li>
-		</ol>
-		</div>
-		<div style="text-align: center; margin-top: 77px;">
-		<h1>我的一天日程</h1>
-		<ol>
-		<li>Get up from 5:00 to 6:00
-		</li>
-		<li>Breakfast 7:00-8:00
-		</li>
-		<li>Go to work/school 7:00-12:00
-		</li>
-		<li>Work/study 7:00-12:00
-		</li>
-		<li>Lunch 12:00-13:00
-		</li>
-		<li>Continue to work/study 14:30-19:30
-		</li>
-		<li>After work/school 19:30
-		</li>
-		<li>Dinner 19:30-20:30
-		</li>
-		<li>Break/Entertainment 20:30-23:30
-		</li>
-		<li>Wash 23:30-00:00
-		</li>
-		<li>Sleep 00:00-06:00
-		</li>
-		<li>Welcome to use! If you think it is helpful to you, please consider donating to support our development
-		work.
-		</li>
-		<li>
-		<img class="myimage" src="Alipay.jpg" alt="支付宝收款码" width="200">
-		</li>
-		<li>
-		<img class="myimage" src="WeChat.png" alt="微信收款码" width="200">
-		</li>
-		</ol>
-		</div>
-		-->
+
 		<div style=" margin-top: 777px;">
 			<h1>
 				Some friends
@@ -509,6 +549,19 @@
 			document.write("<h1>从1997年7月2日到今天已经过去了" + days_since_birthday(birthday) + "天</h1>");
 			document.write("<h1>从1997年7月2日到100年还剩" + to100 + "天</h1>");
 		</script>
+
+
+		 <div class="container">
+        <div class="divider"></div>
+        
+        <button class="nav-button" onclick="window.location.href='allinone.html'"> 
+            探索完整内容 <i class="fas fa-arrow-right"></i>
+        </button>
+        
+        <div class="caption">Click to discover the complete collection</div>
+        
+        <div class="divider"></div>
+    </div>
 	</body>
 
 </html>
