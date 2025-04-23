@@ -281,22 +281,22 @@
  
         <div class="search-group"> 
             <h3>搜索工具</h3> 
-            <div class="search-form"> 
+            <form class="search-form"> 
                 <input type="text" name="wd" placeholder="请输入关键词"> 
                 <input type="submit" value="百度"> 
-            </div> 
-            <div class="search-form"> 
+            </form> 
+            <form class="search-form"> 
                 <input type="text" name="q" placeholder="请输入关键词"> 
                 <input type="submit" value="Bing"> 
-            </div> 
-            <div class="search-form"> 
+            </form> 
+            <form class="search-form"> 
                 <input type="text" name="keyword" placeholder="请输入关键词"> 
                 <input type="submit" value="抖音"> 
-            </div> 
-            <div class="search-form"> 
+            </form> 
+            <form class="search-form"> 
                 <input type="text" name="keyword" placeholder="请输入关键词"> 
                 <input type="submit" value="西瓜视频"> 
-            </div> 
+            </form> 
         </div> 
  
         <div class="divider"></div> 
@@ -436,31 +436,56 @@
         } 
  
         function showCopySuccess() { 
-            var successElement = document.getElementById("copy-success");  
-            successElement.style.display  = "block"; 
-            setTimeout(function () { 
-                successElement.style.display  = "none"; 
-            }, 1000); 
-        } 
+     
+		var successElement = document.getElementById("copy-success");  
+         
+	
+		successElement.style.display  = "block"; 
+         
+		setTimeout(function () { 
+         
+		    successElement.style.display  = "none"; 
+         
+	    }, 1000); 
+       
+	} 
  
-       function utf16to8(str) {
-var out = "", i, len, c;
-len = str.length;
-for (i = 0; i < len; i++) {
-c = str.charCodeAt(i);
-if ((c >= 0x0001) && (c <= 0x007F)) {
-out += str.charAt(i);
-} else if (c > 0x07FF) {
-out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
-out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
-out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
-} else {
-out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
-out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
-}
-}
-return out;
-}
+      
+	    function utf16to8(str) {
+
+	       var out = "", i, len, c;
+
+	       len = str.length;
+
+	       for (i = 0; i < len; i++) {
+
+		       c = str.charCodeAt(i);
+
+		       if ((c >= 0x0001) && (c <= 0x007F)) {
+
+			       out += str.charAt(i);
+
+		       } else if (c > 0x07FF) {
+
+			       out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+
+			       out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
+
+			       out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+
+		       } else {
+
+			       out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
+
+			       out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+
+		       }
+
+	       }
+
+	       return out;
+
+       }
 
 
 	    
