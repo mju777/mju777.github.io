@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>YU'S IO & AI & 01</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta charset="UTF-8">
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+	<head>
+		<title>YU'S IO & AI & 01</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta charset="UTF-8">
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
 
-  <style>
-    #qrcode {
+		<style>
+			#qrcode {
       width: 200px;
       height: 200px;
       margin: 0 auto;
@@ -199,7 +199,7 @@
 
 
 
-  <script>
+		<script>
 
 
 
@@ -207,7 +207,7 @@
 
 
 
-    function copyToClipboard() {
+			function copyToClipboard() {
       // 获取要复制的文本
       var copyText = document.getElementById("result").innerText;
 
@@ -597,16 +597,14 @@
 
 
 
-</head>
+	</head>
 
-<body>
+	<body>
 
-<h1><span id="showtime"></span>
+		<h1>
+			<span id="showtime"></span>
 
-</h1>
-
-
-
+		</h1>
 
 
 
@@ -624,15 +622,18 @@
 
 
 
-<div>
-  <input type="text" id="textInput" placeholder="请输入文本">
-</div>
-<div>
-	
-  <input type="text" id="numberInput"  placeholder="请输入数字版本号">
-</div>
-<script>
-		 var now = new Date();
+
+
+
+		<div>
+			<input type="text" id="textInput" placeholder="请输入文本">
+		</div>
+		<div>
+
+			<input type="text" id="numberInput" placeholder="请输入数字版本号">
+		</div>
+		<script>
+			var now = new Date();
       // 使用 slice 方法来获取年份的后两位
       var year = String(now.getFullYear());
         // 进行计算
@@ -685,19 +686,19 @@
 
 
 
-<!-- 添加新的复制按钮 -->
-<div>
-  <p id="result"></p>
-</div>
-<div>
-  <button onclick="qianzhui()">作为前缀</button>
-</div>
-<div>
-  <button onclick="houzhui()">作为后缀</button>
-</div>
-<div>
-  <button onclick="copyToClipboard()">再次复制</button>
-</div>
+		<!-- 添加新的复制按钮 -->
+		<div>
+			<p id="result"></p>
+		</div>
+		<div>
+			<button onclick="qianzhui()">作为前缀</button>
+		</div>
+		<div>
+			<button onclick="houzhui()">作为后缀</button>
+		</div>
+		<div>
+			<button onclick="copyToClipboard()">再次复制</button>
+		</div>
 
 
 
@@ -741,13 +742,13 @@
 
 
 
-<div>
-  <button id="knowledge-button" onclick="copyName()">知识</button>
-</div>
+		<div>
+			<button id="knowledge-button" onclick="copyName()">知识</button>
+		</div>
 
-<div>
-  <button id="information-button" onclick="copyInformation()">资料</button>
-</div>
+		<div>
+			<button id="information-button" onclick="copyInformation()">资料</button>
+		</div>
 
 
 
@@ -790,41 +791,41 @@
 
 
 
-<h1 id="copy-success">复制成功！</h1>
-<form action="https://www.baidu.com/s" method="get">
-  <!-- 创建一个输入框，用于输入搜索关键词 -->
-  <input type="text" name="wd" placeholder="请输入关键词">
-  <!-- 创建一个提交按钮，用于提交搜索表单 -->
-  <input type="submit" value="百度一下">
-</form>
+		<h1 id="copy-success">复制成功！</h1>
+		<form action="https://www.baidu.com/s" method="get">
+			<!-- 创建一个输入框，用于输入搜索关键词 -->
+			<input type="text" name="wd" placeholder="请输入关键词">
+			<!-- 创建一个提交按钮，用于提交搜索表单 -->
+			<input type="submit" value="百度一下">
+		</form>
 
 
-<!-- 增加 Bing 搜索框 -->
-<form action="https://www.bing.com/search" method="get">
-  <input type="text" name="q" placeholder="请输入关键词">
-  <input type="submit" value="Bing 搜索">
-</form>
+		<!-- 增加 Bing 搜索框 -->
+		<form action="https://www.bing.com/search" method="get">
+			<input type="text" name="q" placeholder="请输入关键词">
+			<input type="submit" value="Bing 搜索">
+		</form>
 
 
-<!-- 增加抖音搜索框 -->
-<form action="https://www.douyin.com/search/" method="get">
-  <input type="text" name="keyword" placeholder="请输入关键词">
-  <input type="submit" value="抖音搜索">
-</form>
+		<!-- 增加抖音搜索框 -->
+		<form action="https://www.douyin.com/search/" method="get">
+			<input type="text" name="keyword" placeholder="请输入关键词">
+			<input type="submit" value="抖音搜索">
+		</form>
 
-<!-- 增加西瓜视频搜索框 -->
-<form action="https://www.ixigua.com/search/" method="get">
-  <input type="text" name="keyword" placeholder="请输入关键词">
-  <input type="submit" value="西瓜视频搜索">
-</form>
+		<!-- 增加西瓜视频搜索框 -->
+		<form action="https://www.ixigua.com/search/" method="get">
+			<input type="text" name="keyword" placeholder="请输入关键词">
+			<input type="submit" value="西瓜视频搜索">
+		</form>
 
 
 
-<!-- 增加菜鸟工具搜索框 -->
-<form action="https://www.jyshare.com/index.php" method="get">
-  <input type="text" name="s" placeholder="请输入关键词">
-  <input type="submit" value="菜鸟工具搜索">
-</form>
+		<!-- 增加菜鸟工具搜索框 -->
+		<form action="https://www.jyshare.com/index.php" method="get">
+			<input type="text" name="s" placeholder="请输入关键词">
+			<input type="submit" value="菜鸟工具搜索">
+		</form>
 
 
 
@@ -891,7 +892,7 @@
 
 
 
-<!--
+		<!--
 
     <style>
         #video-container {
@@ -969,36 +970,32 @@
 
 
 
-<h2>二维码生成器</h2>
-<p>输入你想要转换为二维码的文本：</p>
-<!-- 使用表单获取用户的输入文本 -->
-<div>
-  <label for="text">请输入文本：</label>
-  <input type="text" id="text">
-</div>
+		<h2>二维码生成器</h2>
+		<p>输入你想要转换为二维码的文本：</p>
+		<!-- 使用表单获取用户的输入文本 -->
+		<div>
+			<label for="text">请输入文本：</label>
+			<input type="text" id="text">
+		</div>
 
 
 
-<div id="qrcode"></div>
+		<div id="qrcode"></div>
 
 
 
-<script>
-  $(function () {
-    $('#text').on('input', function () {
-      var text = $(this).val();
-      if (text) {
-        $('#qrcode').empty().qrcode(utf16to8(text));
-      } else {
-        $('#qrcode').empty();
-      }
-    });
-  });
-</script>
-
-
-
-
+		<script>
+			$(function () {
+															    $('#text').on('input', function () {
+															      var text = $(this).val();
+															      if (text) {
+															        $('#qrcode').empty().qrcode(utf16to8(text));
+															      } else {
+															        $('#qrcode').empty();
+															      }
+															    });
+															  });
+		</script>
 
 
 
@@ -1037,7 +1034,11 @@
 
 
 
-<!--
+
+
+
+
+		<!--
     <div style="text-align: center; margin-top: 777px;">
         <h1>我的一天日程</h1>
         <ol>
@@ -1108,7 +1109,6 @@
 
 
 
-	
 
 
 
@@ -1125,50 +1125,49 @@
 
 
 
-<div style=" margin-top: 777px;">
-  <h1>Some friends</h1>
-  <ol>
-    <li>Welcome to use! If you think it is helpful to you, please consider donating to support our development
-      work.
-    </li>
-    <li>
-      <img class="myimage" src="Alipay.jpg" alt="支付宝收款码" width="200">
-    </li>
-    <li>
-      <img class="myimage" src="WeChat.png" alt="微信收款码" width="200">
-    </li>
 
-    <li>
-      <a href="https://bot.360.com/chat/8493f1681af94f958f8296065daf07e4?src=360bot_se_left"
-         target="_blank">360ai</a>
-    </li>
-  
- 
-  </div>
+		<div style=" margin-top: 777px;">
+			<h1>Some friends</h1>
+			<ol>
+				<li>Welcome to use! If you think it is helpful to you, please consider donating to support our development
+					work.
+				</li>
+				<li>
+					<img class="myimage" src="Alipay.jpg" alt="支付宝收款码" width="200">
+				</li>
+				<li>
+					<img class="myimage" src="WeChat.png" alt="微信收款码" width="200">
+				</li>
+
+				<li>
+					<a href="https://bot.360.com/chat/8493f1681af94f958f8296065daf07e4?src=360bot_se_left"
+					   target="_blank">360ai</a>
+				</li>
 
 
-<script>
-  function days_since_birthday(birthday) {
-    var today = new Date();
-    var age = today - birthday;
-    return Math.floor(age / (1000 * 60 * 60 * 24));
-  }
-
-  var birthday = new Date(1997, 6, 2);
-  var to100 = 36500 - days_since_birthday(birthday)
+		</div>
 
 
-  document.write("<h1>从1997年7月2日到今天已经过去了" + days_since_birthday(birthday) + "天</h1>");
-  document.write("<h1>从1997年7月2日到100年还剩" + to100 + "天</h1>");
-
-</script>
-
-
+		<script>
+			function days_since_birthday(birthday) {
+															    var today = new Date();
+															    var age = today - birthday;
+															    return Math.floor(age / (1000 * 60 * 60 * 24));
+															  }
+															
+															  var birthday = new Date(1997, 6, 2);
+															  var to100 = 36500 - days_since_birthday(birthday)
+															
+															
+															  document.write("<h1>从1997年7月2日到今天已经过去了" + days_since_birthday(birthday) + "天</h1>");
+															  document.write("<h1>从1997年7月2日到100年还剩" + to100 + "天</h1>");
+		</script>
 
 
 
 
-</body>
+
+
+	</body>
 
 </html>
-
