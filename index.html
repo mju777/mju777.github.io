@@ -267,8 +267,8 @@
             <button onclick="qianzhui()">作为前缀</button> 
             <button onclick="houzhui()">作为后缀</button> 
             <button onclick="copyToClipboard()">再次复制</button> 
-            <button onclick="copyName()">知识</button> 
-            <button onclick="copyInformation()">资料</button> 
+            <button onclick="copylilun()">理论</button> 
+            <button onclick="copyshijian()">实践</button> 
         </div> 
  
         <h2>二维码生成器</h2> 
@@ -281,21 +281,21 @@
  
         <div class="search-group"> 
             <h3>搜索工具</h3> 
-            <form class="search-form"> 
+            <form class="search-form" url="baidu.com"> 
                 <input type="text" name="wd" placeholder="请输入关键词"> 
                 <input type="submit" value="百度"> 
             </form> 
-            <form class="search-form"> 
+            <form class="search-form" url="bing.com"> 
                 <input type="text" name="q" placeholder="请输入关键词"> 
-                <input type="submit" value="Bing"> 
+                <input type="submit" value="必应"> 
             </form> 
-            <form class="search-form"> 
+            <form class="search-form" url="douyin.com"> 
                 <input type="text" name="keyword" placeholder="请输入关键词"> 
                 <input type="submit" value="抖音"> 
             </form> 
-            <form class="search-form"> 
+            <form class="search-form" url="xigua.com"> 
                 <input type="text" name="keyword" placeholder="请输入关键词"> 
-                <input type="submit" value="西瓜视频"> 
+                <input type="submit" value="西瓜"> 
             </form> 
         </div> 
  
@@ -415,13 +415,13 @@
             return year + "-" + month + "-" + date + "-" + hours + "-" + minutes + "-" + seconds + "-" + milliseconds; 
         } 
  
-        function copyName() { 
-            var copyText = "知识体系多级列表"; 
+        function copylilun() { 
+            var copyText = "理论树"; 
             copyTextToClipboard(copyText); 
         } 
  
-        function copyInformation() { 
-            var copyText = "相关资料多级列表"; 
+        function copyshijian() { 
+            var copyText = "实践树"; 
             copyTextToClipboard(copyText); 
         } 
  
