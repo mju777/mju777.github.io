@@ -5,7 +5,7 @@
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>YU'S IO & AI & 01</title> 
-    <link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-100-M/font-awesome/6.0.0/css/all.min.css">  
+    <link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-100-M/font-awesome/6.0.0/css/all.min.css">   
     <style> 
         :root { 
             --primary-color: #2c3e50; 
@@ -62,10 +62,10 @@
  
         .button-group { 
             display: flex; 
-            flex-wrap: wrap; 
+            flex-direction: column; 
             gap: 0.8rem; 
             margin-bottom: 1.5rem; 
-            justify-content: center; 
+            align-items: center; 
         } 
  
         button { 
@@ -195,31 +195,6 @@
             background-color: var(--white); 
         } 
  
-        .search-group { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 1rem; 
-            margin-top: 2rem; 
-        } 
- 
-        .search-form { 
-            display: flex; 
-            gap: 0.5rem; 
-        } 
- 
-        .search-form input[type="text"] { 
-            flex: 1; 
-        } 
- 
-        .search-form input[type="submit"] { 
-            padding: 0 1.5rem; 
-            background-color: var(--primary-color); 
-            color: var(--white); 
-            border: none; 
-            border-radius: 4px; 
-            cursor: pointer; 
-        } 
- 
         .donation-section { 
             margin-top: 3rem; 
             text-align: center; 
@@ -242,7 +217,7 @@
  
         .button-matrix { 
             display: grid; 
-            grid-template-columns: repeat(6, 1fr); 
+            grid-template-columns: repeat(3, 1fr); 
             gap: 0.8rem; 
             margin-bottom: 1.5rem; 
         } 
@@ -279,30 +254,10 @@
             <div id="qrcode"></div> 
         </div> 
  
-        <div class="search-group"> 
-            <h3>搜索工具</h3> 
-            <form class="search-form" url="baidu.com"> 
-                <input type="text" name="wd" placeholder="请输入关键词"> 
-                <input type="submit" value="百度"> 
-            </form> 
-            <form class="search-form" url="bing.com"> 
-                <input type="text" name="q" placeholder="请输入关键词"> 
-                <input type="submit" value="必应"> 
-            </form> 
-            <form class="search-form" url="douyin.com"> 
-                <input type="text" name="keyword" placeholder="请输入关键词"> 
-                <input type="submit" value="抖音"> 
-            </form> 
-            <form class="search-form" url="xigua.com"> 
-                <input type="text" name="keyword" placeholder="请输入关键词"> 
-                <input type="submit" value="西瓜"> 
-            </form> 
-        </div> 
- 
         <div class="divider"></div> 
  
         <div class="button-matrix"> 
-            <!-- 生成 a - z, 0 - 9 的 6x6 按钮矩阵 --> 
+            <!-- 生成 a - z, 0 - 9 的 3x12 按钮矩阵 --> 
             <button onclick="buttonClick('a')">a</button> 
             <button onclick="buttonClick('b')">b</button> 
             <button onclick="buttonClick('c')">c</button> 
@@ -340,7 +295,9 @@
             <button onclick="buttonClick('8')">8</button> 
             <button onclick="buttonClick('9')">9</button> 
         </div> 
- 
+ <div  class="caption" >
+ <button class="donation-section" onclick="buttonClick('allinone')">all in one</button> 
+</div>
         <div class="caption">点击按钮选择字符</div> 
  
         <div class="divider"></div> 
@@ -349,67 +306,67 @@
             <h3>支持我们</h3> 
             <p>如果这个工具对您有帮助，请考虑捐赠支持我们的开发工作</p> 
             <div class="donation-images"> 
-                <img src="Alipay.jpg"  alt="支付宝收款码"> 
-                <img src="WeChat.png"  alt="微信收款码"> 
+                <img src="Alipay.jpg"   alt="支付宝收款码"> 
+                <img src="WeChat.png"   alt="微信收款码"> 
             </div> 
         </div> 
  
         <h1 id="copy-success">复制成功！</h1> 
     </div> 
  
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>  
-    <script src="https://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>  
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>   
+    <script src="https://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>   
  
     <script> 
         function copyToClipboard() { 
-            var copyText = document.getElementById("result").innerText;  
-            var tempInput = document.createElement("textarea");  
-            tempInput.value  = copyText; 
-            document.body.appendChild(tempInput);  
-            tempInput.select();  
-            document.execCommand("copy");  
-            document.body.removeChild(tempInput);  
+            var copyText = document.getElementById("result").innerText;   
+            var tempInput = document.createElement("textarea");   
+            tempInput.value   = copyText; 
+            document.body.appendChild(tempInput);   
+            tempInput.select();   
+            document.execCommand("copy");   
+            document.body.removeChild(tempInput);   
             showCopySuccess(); 
         } 
  
         function houzhui() { 
-            var number = document.getElementById("numberInput").value;  
-            var text = document.getElementById("textInput").value;  
+            var number = document.getElementById("numberInput").value;   
+            var text = document.getElementById("textInput").value;   
             var formattedDateTime = getFormattedDateTime(); 
-            document.getElementById("result").innerHTML  = text + "-" + number + "-" + formattedDateTime; 
+            document.getElementById("result").innerHTML   = text + "-" + number + "-" + formattedDateTime; 
             copyToClipboard(); 
         } 
  
         function qianzhui() { 
-            var number = document.getElementById("numberInput").value;  
-            var text = document.getElementById("textInput").value;  
+            var number = document.getElementById("numberInput").value;   
+            var text = document.getElementById("textInput").value;   
             var formattedDateTime = getFormattedDateTime(); 
-            document.getElementById("result").innerHTML  = formattedDateTime + "-" + number + "-" + text; 
+            document.getElementById("result").innerHTML   = formattedDateTime + "-" + number + "-" + text; 
             copyToClipboard(); 
         } 
  
         function getFormattedDateTime() { 
             var now = new Date(); 
-            var year = String(now.getFullYear());  
-            var milliseconds = now.getMilliseconds();  
+            var year = String(now.getFullYear());   
+            var milliseconds = now.getMilliseconds();   
  
             if (milliseconds < 100) { 
                 milliseconds = milliseconds < 10 ? '00' + milliseconds : '0' + milliseconds; 
             } 
  
-            var seconds = now.getSeconds();  
+            var seconds = now.getSeconds();   
             seconds = seconds < 10 ? '0' + seconds : seconds; 
  
-            var minutes = now.getMinutes();  
+            var minutes = now.getMinutes();   
             minutes = minutes < 10 ? '0' + minutes : minutes; 
  
-            var hours = now.getHours();  
+            var hours = now.getHours();   
             hours = hours < 10 ? '0' + hours : hours; 
  
-            var date = now.getDate();  
+            var date = now.getDate();   
             date = date < 10 ? '0' + date : date; 
  
-            var month = now.getMonth()  + 1; 
+            var month = now.getMonth()   + 1; 
             month = month < 10 ? '0' + month : month; 
  
             return year + "-" + month + "-" + date + "-" + hours + "-" + minutes + "-" + seconds + "-" + milliseconds; 
@@ -426,126 +383,78 @@
         } 
  
         function copyTextToClipboard(text) { 
-            var tempInput = document.createElement("textarea");  
-            tempInput.value  = text; 
-            document.body.appendChild(tempInput);  
-            tempInput.select();  
-            document.execCommand("copy");  
-            document.body.removeChild(tempInput);  
+            var tempInput = document.createElement("textarea");   
+            tempInput.value   = text; 
+            document.body.appendChild(tempInput);   
+            tempInput.select();   
+            document.execCommand("copy");   
+            document.body.removeChild(tempInput);   
             showCopySuccess(); 
         } 
  
         function showCopySuccess() { 
-     
-		var successElement = document.getElementById("copy-success");  
-         
-	
-		successElement.style.display  = "block"; 
-         
-		setTimeout(function () { 
-         
-		    successElement.style.display  = "none"; 
-         
-	    }, 1000); 
-       
-	} 
+            var successElement = document.getElementById("copy-success");   
+            successElement.style.display   = "block"; 
+            setTimeout(function () { 
+                successElement.style.display   = "none"; 
+            }, 1000); 
+        } 
  
-      
-	    function utf16to8(str) {
-
-	       var out = "", i, len, c;
-
-	       len = str.length;
-
-	       for (i = 0; i < len; i++) {
-
-		       c = str.charCodeAt(i);
-
-		       if ((c >= 0x0001) && (c <= 0x007F)) {
-
-			       out += str.charAt(i);
-
-		       } else if (c > 0x07FF) {
-
-			       out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
-
-			       out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
-
-			       out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
-
-		       } else {
-
-			       out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
-
-			       out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
-
-		       }
-
-	       }
-
-	       return out;
-
-       }
-
-
-	    
-	    function updateTime() {
-
-		    
-		    var now = new Date();
-
-		    
-		    var timeString = now.toLocaleTimeString();
-
-	
-	
-		    
-		    var milliseconds = now.getMilliseconds();
-
-	
-	
-		    
-		    document.getElementById("showtime").innerHTML = timeString + ":" + milliseconds;
-
-
-
-}
-
-	    
-	    
-	    
-	   
-	    
-	    
-	    function buttonClick(str){
-		      // 跳转到指定名称的HTML网页 
-    
-		    window.location.href  = str + '.html';
-	    }
-
-$(document).ready(function() {
-setInterval(updateTime, 1);
-
-// 设置默认版本号
-var now = new Date();
-var year = String(now.getFullYear());
-var result = year - 2024 + 1;
-document.getElementById("numberInput").value = result;
-
-// 二维码生成
-$('#qrText').on('input', function() {
-var text = $(this).val();
-if (text) {
-$('#qrcode').empty().qrcode(utf16to8(text));
-} else {
-$('#qrcode').empty();
-}
-});
-});
-
-function days_since_birthday(birthday) {
-var today = new Date();
-var age = today - birthday;
+        function utf16to8(str) { 
+            var out = "", i, len, c; 
+            len = str.length;  
+            for (i = 0; i < len; i++) { 
+                c = str.charCodeAt(i);  
+                if ((c >= 0x0001) && (c <= 0x007F)) { 
+                    out += str.charAt(i);  
+                } else if (c > 0x07FF) { 
+                    out += String.fromCharCode(0xE0  | ((c >> 12) & 0x0F)); 
+                    out += String.fromCharCode(0x80  | ((c >> 6) & 0x3F)); 
+                    out += String.fromCharCode(0x80  | ((c >> 0) & 0x3F)); 
+                } else { 
+                    out += String.fromCharCode(0xC0  | ((c >> 6) & 0x1F)); 
+                    out += String.fromCharCode(0x80  | ((c >> 0) & 0x3F)); 
+                } 
+            } 
+            return out; 
+        } 
+ 
+        function updateTime() { 
+            var now = new Date(); 
+            var timeString = now.toLocaleTimeString();  
+            var milliseconds = now.getMilliseconds();  
+            document.getElementById("showtime").innerHTML  = timeString + ":" + milliseconds; 
+        } 
+ 
+        function buttonClick(str) { 
+            // 跳转到指定名称的HTML网页 
+            window.location.href   = str + '.html'; 
+        } 
+ 
+        $(document).ready(function() { 
+            setInterval(updateTime, 1); 
+ 
+            // 设置默认版本号 
+            var now = new Date(); 
+            var year = String(now.getFullYear());  
+            var result = year - 2024 + 1; 
+            document.getElementById("numberInput").value  = result; 
+ 
+            // 二维码生成 
+            $('#qrText').on('input', function() { 
+                var text = $(this).val(); 
+                if (text) { 
+                    $('#qrcode').empty().qrcode(utf16to8(text)); 
+                } else { 
+                    $('#qrcode').empty(); 
+                } 
+            }); 
+        }); 
+ 
+        function days_since_birthday(birthday) { 
+            var today = new Date(); 
+            var age = today - birthday; 
+            
 return Math.floor(age / (1000 * 60 * 60 * 24));
 }
 
