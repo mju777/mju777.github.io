@@ -1,0 +1,499 @@
+<!DOCTYPE html> 
+<html lang="zh-CN"> 
+ 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>YU'S IO & AI & 01</title> 
+    <link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-100-M/font-awesome/6.0.0/css/all.min.css">   
+    <style> 
+        :root { 
+            --primary-color: #808000; 
+            --secondary-color: #40E0D0; 
+            --accent-color: #6B8E23; 
+            --transition-speed: 0.3s; 
+            --white: #ffffff; 
+            --light-gray: #006A4E; 
+        } 
+ 
+        body { 
+            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            background-color: var(--light-gray); 
+            color: var(--primary-color); 
+            margin: 0; 
+            padding: 2rem; 
+            line-height: 1.6; 
+            min-height: 100vh; 
+        } 
+ 
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 2rem; 
+            background-color: var(--white); 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); 
+            border-radius: 8px; 
+        } 
+ 
+        h1, 
+        h2 { 
+            color: var(--primary-color); 
+            text-align: center; 
+            margin-bottom: 1.5rem; 
+        } 
+ 
+        .input-group { 
+            margin-bottom: 1.5rem; 
+        } 
+ 
+        input[type="text"] { 
+            width: 100%; 
+            padding: 0.8rem; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+            font-size: 1rem; 
+            transition: border-color var(--transition-speed); 
+        } 
+ 
+        input[type="text"]:focus { 
+            outline: none; 
+            border-color: var(--accent-color); 
+        } 
+ 
+        .button-group { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 0.8rem; 
+            margin-bottom: 1.5rem; 
+            align-items: center; 
+        } 
+ 
+        button { 
+            padding: 0.8rem 1.5rem; 
+            background-color: var(--primary-color); 
+            color: var(--white); 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            transition: all var(--transition-speed); 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+        } 
+ 
+        button:hover { 
+            background-color: var(--accent-color); 
+            transform: translateY(-2px); 
+        } 
+ 
+        #result { 
+            padding: 1rem; 
+            background-color: var(--light-gray); 
+            border-radius: 4px; 
+            margin-bottom: 1.5rem; 
+            word-break: break-all; 
+            text-align: center; 
+            font-size: 1.1rem; 
+        } 
+ 
+        #copy-success { 
+            position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            background-color: var(--accent-color); 
+            color: var(--white); 
+            padding: 1rem 2rem; 
+            border-radius: 4px; 
+            z-index: 1000; 
+            display: none; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+        } 
+ 
+        #showtime { 
+            display: block; 
+            text-align: center; 
+            font-size: 1.2rem; 
+            margin-bottom: 1.5rem; 
+            color: var(--secondary-color); 
+        } 
+ 
+        .divider { 
+            width: 100px; 
+            height: 1px; 
+            background-color: var(--secondary-color); 
+            margin: 3rem auto; 
+            opacity: 0.3; 
+        } 
+ 
+        .nav-button { 
+            position: relative; 
+            display: inline-block; 
+            padding: 1.25rem 2.5rem; 
+            background-color: transparent; 
+            color: var(--primary-color); 
+            border: 1px solid var(--primary-color); 
+            font-size: 1rem; 
+            font-weight: 500; 
+            letter-spacing: 0.05em; 
+            text-transform: uppercase; 
+            cursor: pointer; 
+            transition: all var(--transition-speed) ease; 
+            overflow: hidden; 
+            margin: 2rem 0; 
+        } 
+ 
+        .nav-button::before { 
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: var(--primary-color); 
+            transform: translateX(-100%); 
+            transition: transform var(--transition-speed) ease; 
+            z-index: -1; 
+        } 
+ 
+        .nav-button:hover { 
+            color: var(--white); 
+        } 
+ 
+        .nav-button:hover::before { 
+            transform: translateX(0); 
+        } 
+ 
+        .nav-button i { 
+            margin-left: 0.5rem; 
+            transition: transform var(--transition-speed) ease; 
+        } 
+ 
+        .nav-button:hover i { 
+            transform: translateX(0.25rem); 
+        } 
+ 
+        .caption { 
+            font-size: 0.875rem; 
+            color: var(--secondary-color); 
+            letter-spacing: 0.1em; 
+            margin-top: 1rem; 
+            text-align: center; 
+        } 
+ 
+        .qrcode-container { 
+            margin: 2rem auto; 
+            text-align: center; 
+        } 
+ 
+        #qrcode { 
+            width: 200px; 
+            height: 200px; 
+            margin: 1rem auto; 
+            border: 1px solid #eee; 
+            padding: 10px; 
+            background-color: var(--white); 
+        } 
+ 
+        .donation-section { 
+            margin-top: 3rem; 
+            text-align: center; 
+        } 
+ 
+        .donation-images { 
+            display: flex; 
+            justify-content: center; 
+            gap: 2rem; 
+            margin-top: 1rem; 
+            flex-wrap: wrap; 
+        } 
+ 
+        .donation-images img { 
+            width: 180px; 
+            height: auto; 
+            border-radius: 4px; 
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+        } 
+ 
+        .button-matrix { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 0.8rem; 
+            margin-bottom: 1.5rem; 
+        } 
+    </style> 
+</head> 
+ 
+<body> 
+    <div class="container"> 
+        <h1><span id="showtime"></span></h1> 
+ 
+        <div class="input-group"> 
+            <input type="text" id="textInput" placeholder="请输入文本"> 
+        </div> 
+ 
+        <div class="input-group"> 
+            <input type="text" id="numberInput" placeholder="请输入数字版本号"> 
+        </div> 
+ 
+        <div id="result"></div> 
+ 
+        <div class="button-group"> 
+            <button onclick="qianzhui()">作为前缀</button> 
+            <button onclick="houzhui()">作为后缀</button> 
+            <button onclick="copyToClipboard()">再次复制</button> 
+            <button onclick="copylilun()">理论</button> 
+            <button onclick="copyshijian()">实践</button> 
+        </div> 
+ 
+        <h2>二维码生成器</h2> 
+        <div class="input-group"> 
+            <input type="text" id="qrText" placeholder="请输入要生成二维码的内容"> 
+        </div> 
+        <div class="qrcode-container"> 
+            <div id="qrcode"></div> 
+        </div> 
+ 
+        <div class="divider">cncncncncncncncncncncncncncncncncncncn</div> 
+ 
+        <div class="button-matrix"> 
+            <!-- 生成 a - z, 0 - 9 的 3x12 按钮矩阵 --> 
+            <button onclick="buttonClick('a')">a</button> 
+            <button onclick="buttonClick('b')">b</button> 
+            <button onclick="buttonClick('c')">c</button> 
+            <button onclick="buttonClick('d')">d</button> 
+            <button onclick="buttonClick('e')">e</button> 
+            <button onclick="buttonClick('f')">f</button> 
+            <button onclick="buttonClick('g')">g</button> 
+            <button onclick="buttonClick('h')">h</button> 
+            <button onclick="buttonClick('i')">i</button> 
+            <button onclick="buttonClick('j')">j</button> 
+            <button onclick="buttonClick('k')">k</button> 
+            <button onclick="buttonClick('l')">l</button> 
+            <button onclick="buttonClick('m')">m</button> 
+            <button onclick="buttonClick('n')">n</button> 
+            <button onclick="buttonClick('o')">o</button> 
+            <button onclick="buttonClick('p')">p</button> 
+            <button onclick="buttonClick('q')">q</button> 
+            <button onclick="buttonClick('r')">r</button> 
+            <button onclick="buttonClick('s')">s</button> 
+            <button onclick="buttonClick('t')">t</button> 
+            <button onclick="buttonClick('u')">u</button> 
+            <button onclick="buttonClick('v')">v</button> 
+            <button onclick="buttonClick('w')">w</button> 
+            <button onclick="buttonClick('x')">x</button> 
+            <button onclick="buttonClick('y')">y</button> 
+            <button onclick="buttonClick('z')">z</button> 
+           
+        </div> 
+	     <div class="divider">enenenenenenenenenenenenenen</div> 
+	     <div class="button-matrix"> 
+            <!-- 生成 a - z, 0 - 9 的 3x12 按钮矩阵 --> 
+            <button onclick="buttonClick('a')">a</button> 
+            <button onclick="buttonClick('b')">b</button> 
+            <button onclick="buttonClick('c')">c</button> 
+            <button onclick="buttonClick('d')">d</button> 
+            <button onclick="buttonClick('e')">e</button> 
+            <button onclick="buttonClick('f')">f</button> 
+            <button onclick="buttonClick('g')">g</button> 
+            <button onclick="buttonClick('h')">h</button> 
+            <button onclick="buttonClick('i')">i</button> 
+            <button onclick="buttonClick('j')">j</button> 
+            <button onclick="buttonClick('k')">k</button> 
+            <button onclick="buttonClick('l')">l</button> 
+            <button onclick="buttonClick('m')">m</button> 
+            <button onclick="buttonClick('n')">n</button> 
+            <button onclick="buttonClick('o')">o</button> 
+            <button onclick="buttonClick('p')">p</button> 
+            <button onclick="buttonClick('q')">q</button> 
+            <button onclick="buttonClick('r')">r</button> 
+            <button onclick="buttonClick('s')">s</button> 
+            <button onclick="buttonClick('t')">t</button> 
+            <button onclick="buttonClick('u')">u</button> 
+            <button onclick="buttonClick('v')">v</button> 
+            <button onclick="buttonClick('w')">w</button> 
+            <button onclick="buttonClick('x')">x</button> 
+            <button onclick="buttonClick('y')">y</button> 
+            <button onclick="buttonClick('z')">z</button> 
+           
+        </div> 
+ <div  class="caption" >
+ <button class="donation-section" onclick="buttonClick('allinone')">all in one</button> 
+</div>
+        <div class="caption">点击按钮选择字符</div> 
+ 
+        <div class="divider"></div> 
+ 
+<!--         <div class="donation-section"> 
+            <h3>支持我们</h3> 
+            <p>如果这个工具对您有帮助，请考虑捐赠支持我们的开发工作</p> 
+            <div class="donation-images"> 
+                <img src="Alipay.jpg"   alt="支付宝收款码"> 
+                <img src="WeChat.png"   alt="微信收款码"> 
+            </div> 
+        </div>  -->
+ 
+        <h1 id="copy-success">复制成功！</h1> 
+    </div> 
+ 
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>   
+    <script src="https://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>   
+ 
+    <script> 
+        function copyToClipboard() { 
+            var copyText = document.getElementById("result").innerText;   
+            var tempInput = document.createElement("textarea");   
+            tempInput.value   = copyText; 
+            document.body.appendChild(tempInput);   
+            tempInput.select();   
+            document.execCommand("copy");   
+            document.body.removeChild(tempInput);   
+            showCopySuccess(); 
+        } 
+ 
+        function houzhui() { 
+            var number = document.getElementById("numberInput").value;   
+            var text = document.getElementById("textInput").value;   
+            var formattedDateTime = getFormattedDateTime(); 
+            document.getElementById("result").innerHTML   = text + "-" + number + "-" + formattedDateTime; 
+            copyToClipboard(); 
+        } 
+ 
+        function qianzhui() { 
+            var number = document.getElementById("numberInput").value;   
+            var text = document.getElementById("textInput").value;   
+            var formattedDateTime = getFormattedDateTime(); 
+            document.getElementById("result").innerHTML   = formattedDateTime + "-" + number + "-" + text; 
+            copyToClipboard(); 
+        } 
+ 
+        function getFormattedDateTime() { 
+            var now = new Date(); 
+            var year = String(now.getFullYear());   
+            var milliseconds = now.getMilliseconds();   
+ 
+            if (milliseconds < 100) { 
+                milliseconds = milliseconds < 10 ? '00' + milliseconds : '0' + milliseconds; 
+            } 
+ 
+            var seconds = now.getSeconds();   
+            seconds = seconds < 10 ? '0' + seconds : seconds; 
+ 
+            var minutes = now.getMinutes();   
+            minutes = minutes < 10 ? '0' + minutes : minutes; 
+ 
+            var hours = now.getHours();   
+            hours = hours < 10 ? '0' + hours : hours; 
+ 
+            var date = now.getDate();   
+            date = date < 10 ? '0' + date : date; 
+ 
+            var month = now.getMonth()   + 1; 
+            month = month < 10 ? '0' + month : month; 
+ 
+            return year + "-" + month + "-" + date + "-" + hours + "-" + minutes + "-" + seconds + "-" + milliseconds; 
+        } 
+ 
+        function copylilun() { 
+            var copyText = "理论树"; 
+            copyTextToClipboard(copyText); 
+        } 
+ 
+        function copyshijian() { 
+            var copyText = "实践树"; 
+            copyTextToClipboard(copyText); 
+        } 
+ 
+        function copyTextToClipboard(text) { 
+            var tempInput = document.createElement("textarea");   
+            tempInput.value   = text; 
+            document.body.appendChild(tempInput);   
+            tempInput.select();   
+            document.execCommand("copy");   
+            document.body.removeChild(tempInput);   
+            showCopySuccess(); 
+        } 
+ 
+        function showCopySuccess() { 
+            var successElement = document.getElementById("copy-success");   
+            successElement.style.display   = "block"; 
+            setTimeout(function () { 
+                successElement.style.display   = "none"; 
+            }, 1000); 
+        } 
+ 
+        function utf16to8(str) { 
+            var out = "", i, len, c; 
+            len = str.length;  
+            for (i = 0; i < len; i++) { 
+                c = str.charCodeAt(i);  
+                if ((c >= 0x0001) && (c <= 0x007F)) { 
+                    out += str.charAt(i);  
+                } else if (c > 0x07FF) { 
+                    out += String.fromCharCode(0xE0  | ((c >> 12) & 0x0F)); 
+                    out += String.fromCharCode(0x80  | ((c >> 6) & 0x3F)); 
+                    out += String.fromCharCode(0x80  | ((c >> 0) & 0x3F)); 
+                } else { 
+                    out += String.fromCharCode(0xC0  | ((c >> 6) & 0x1F)); 
+                    out += String.fromCharCode(0x80  | ((c >> 0) & 0x3F)); 
+                } 
+            } 
+            return out; 
+        } 
+ 
+        function updateTime() { 
+            var now = new Date(); 
+            var timeString = now.toLocaleTimeString();  
+            var milliseconds = now.getMilliseconds();  
+            document.getElementById("showtime").innerHTML  = timeString + ":" + milliseconds; 
+        } 
+ 
+        function buttonClick(str) { 
+            // 跳转到指定名称的HTML网页 
+            window.location.href   = str + '.html'; 
+        } 
+ 
+        $(document).ready(function() { 
+            setInterval(updateTime, 1); 
+ 
+            // 设置默认版本号 
+            var now = new Date(); 
+            var year = String(now.getFullYear());  
+            var result = year - 2024 + 1; 
+            document.getElementById("numberInput").value  = result; 
+ 
+            // 二维码生成 
+            $('#qrText').on('input', function() { 
+                var text = $(this).val(); 
+                if (text) { 
+                    $('#qrcode').empty().qrcode(utf16to8(text)); 
+                } else { 
+                    $('#qrcode').empty(); 
+                } 
+            }); 
+        }); 
+ 
+        function days_since_birthday(birthday) { 
+            var today = new Date(); 
+            var age = today - birthday; 
+            
+return Math.floor(age / (1000 * 60 * 60 * 24));
+}
+
+var birthday = new Date(1997, 6, 2);
+var to100 = 36500 - days_since_birthday(birthday);
+
+
+	    
+
+	    
+	    document.write("<h3 align=center> 从1997年7月2日到今天已经过去了" + days_since_birthday(birthday) + "天</h3>");
+
+	    
+
+	    
+	    
+	    document.write("<h3 align=center> 从1997年7月2日到100年还剩" + to100 + "天</h3>");
+</script>
+</body>
+</html>
