@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算机科学知识体系复杂度分析</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">   
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 1.25rem; /* 20px */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        .highlight-gradient-blue {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0), rgba(59, 130, 246, 0.05));
+        }
+        .highlight-gradient-purple {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0), rgba(139, 92, 246, 0.05));
+        }
+        .highlight-gradient-green {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0), rgba(34, 197, 94, 0.05));
+        }
+        .highlight-gradient-orange {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0), rgba(249, 115, 22, 0.05));
+        }
+        .highlight-gradient-pink {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0), rgba(236, 72, 153, 0.05));
+        }
+        .highlight-gradient-cyan {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0), rgba(6, 182, 212, 0.05));
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <div class="max-w-7xl mx-auto p-4 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+            <!-- 标题卡片 -->
+            <div class="card md:col-span-4 p-8 flex flex-col justify-center items-center text-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative w-full">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">计算机科学知识体系</h1>
+                    <h2 class="text-2xl md:text-4xl font-semibold text-blue-600 mb-6">多层次复杂度分析与教育路径设计</h2>
+                    <div class="flex flex-wrap justify-center gap-4 text-sm">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">DIKWP模型</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full">五维度复杂度</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full">教育路径设计</span>
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full">质量管理体系</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 引言卡片 -->
+            <div class="card md:col-span-2 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-lightbulb text-2xl text-purple-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">引言：复杂性挑战</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">计算机科学知识体系呈现出前所未有的复杂性，涵盖理论与实践、硬件与软件、算法与系统等多个维度。</p>
+                    <div class="space-y-2">
+                        <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-check-circle text-purple-500 mt-1"></i>
+                            <span class="text-gray-700">层次性：从基础电路到AI系统</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-check-circle text-purple-500 mt-1"></i>
+                            <span class="text-gray-700">关联性：各知识领域间紧密联系</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fa-solid fa-check-circle text-purple-500 mt-1"></i>
+                            <span class="text-gray-700">抽象性：从具体编程到计算理论</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 知识焦虑卡片 -->
+            <div class="card md:col-span-2 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-orange"></div>
+                <div class="relative">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-triangle-exclamation text-2xl text-orange-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">知识焦虑的成因</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="bg-orange-50 p-3 rounded-lg">
+                            <div class="font-semibold text-orange-800 mb-1">知识量爆炸增长</div>
+                            <div class="text-orange-700 text-sm">AI、云计算、区块链等技术快速发展</div>
+                        </div>
+                        <div class="bg-orange-50 p-3 rounded-lg">
+                            <div class="font-semibold text-orange-800 mb-1">技术更新加速</div>
+                            <div class="text-orange-700 text-sm">平均18-24个月发生一次重大更新</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 研究目标卡片 -->
+            <div class="card md:col-span-4 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+                <div class="relative">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-bullseye text-2xl text-green-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">研究目标与分析框架</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="bg-green-50 p-4 rounded-lg text-center">
+                            <i class="fa-solid fa-road text-3xl text-green-600 mb-2"></i>
+                            <div class="font-semibold text-green-800">教育路径设计</div>
+                            <div class="text-green-700 text-sm mt-1">从幼儿园到院士的完整教育路径</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg text-center">
+                            <i class="fa-solid fa-ruler-combined text-3xl text-green-600 mb-2"></i>
+                            <div class="font-semibold text-green-800">量化评估体系</div>
+                            <div class="text-green-700 text-sm mt-1">五个维度的0-100%量化评估</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg text-center">
+                            <i class="fa-solid fa-exchange-alt text-3xl text-green-600 mb-2"></i>
+                            <div class="font-semibold text-green-800">转化路径</div>
+                            <div class="text-green-700 text-sm mt-1">虚拟知识到现实生产的转化</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg text-center">
+                            <i class="fa-solid fa-flag text-3xl text-green-600 mb-2"></i>
+                            <div class="font-semibold text-green-800">本土化策略</div>
+                            <div class="text-green-700 text-sm mt-1">符合中国国情的实施方案</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 五维度复杂度评估模型卡片 -->
+            <div class="card md:col-span-4 p-6 flex flex-col relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative flex-shrink-0">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-cubes text-2xl text-blue-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">五维度复杂度评估模型</h3>
+                    </div>
+                </div>
+                <div class="relative flex-grow grid grid-cols-1 md:grid-cols-5 gap-4 h-80">
+                    <div class="col-span-1 md:col-span-2">
+                        <canvas id="complexityChart"></canvas>
+                    </div>
+                    <div class="col-span-1 md:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                                <h4 class="font-semibold text-blue-800">时间复杂度</h4>
+                            </div>
+                            <p class="text-blue-700 text-sm">反映知识掌握所需的时间投入和学习周期，从即时掌握(0%)到长期研究(100%)。</p>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                                <h4 class="font-semibold text-purple-800">空间复杂度</h4>
+                            </div>
+                            <p class="text-purple-700 text-sm">评估知识体系的空间占用和存储需求，从单一知识点(0%)到复杂系统(100%)。</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <h4 class="font-semibold text-green-800">概念复杂度</h4>
+                            </div>
+                            <p class="text-green-700 text-sm">评估知识概念的抽象程度和理解难度，从具体操作(0%)到抽象理论(100%)。</p>
+                        </div>
+                        <div class="bg-orange-50 p-4 rounded-lg">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
+                                <h4 class="font-semibold text-orange-800">结构复杂度</h4>
+                            </div>
+                            <p class="text-orange-700 text-sm">评估知识体系的组织方式和内部关系，从线性结构(0%)到网络结构(100%)。</p>
+                        </div>
+                        <div class="bg-pink-50 p-4 rounded-lg md:col-span-2">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div class="w-3 h-3 bg-pink-500 rounded-full"></div>
+                                <h4 class="font-semibold text-pink-800">行为复杂度</h4>
+                            </div>
+                            <p class="text-pink-700 text-sm">评估知识应用和实践操作的复杂程度，从简单模仿(0%)到独立创新(100%)。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 从虚拟到现实的转化路径卡片 -->
+            <div class="card md:col-span-2 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-cyan"></div>
+                <div class="relative">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-magic text-2xl text-cyan-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">从虚拟到现实的转化路径</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="relative">
+                            <div class="absolute left-3 top-8 bottom-0 w-0.5 bg-cyan-200"></div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-cyan-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">1</div>
+                                <div>
+                                    <h4 class="font-semibold text-cyan-800">虚拟知识构建 (0-25%)</h4>
+                                    <p class="text-cyan-700 text-sm">理论知识学习和概念体系建立</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute left-3 top-8 bottom-0 w-0.5 bg-cyan-200"></div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-cyan-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">2</div>
+                                <div>
+                                    <h4 class="font-semibold text-cyan-800">仿真实践验证 (25-50%)</h4>
+                                    <p class="text-cyan-700 text-sm">编程练习和仿真实验验证</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute left-3 top-8 bottom-0 w-0.5 bg-cyan-200"></div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-cyan-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">3</div>
+                                <div>
+                                    <h4 class="font-semibold text-cyan-800">原型系统开发 (50-75%)</h4>
+                                    <p class="text-cyan-700 text-sm">项目驱动的应用系统开发</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-6 h-6 rounded-full bg-cyan-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">4</div>
+                            <div>
+                                <h4 class="font-semibold text-cyan-800">产业化应用 (75-100%)</h4>
+                                <p class="text-cyan-700 text-sm">真实工程问题解决和价值创造</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 四步实现机制卡片 -->
+            <div class="card md:col-span-2 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-pink"></div>
+                <div class="relative">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-cogs text-2xl text-pink-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">四步实现机制</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-pink-50 p-4 rounded-lg text-center">
+                            <i class="fa-solid fa-book text-3xl text-pink-600 mb-2"></i>
+                            <h4 class="font-semibold text-pink-800">学习阶段</h4>
+                            <p class="text-pink-700 text-sm mt-1">建立知识基础</p>
+                        </div>
+                        <div class="bg-pink-50 p-4 rounded-lg text-center">
+                            <i class="fa-solid fa-hands-helping text-3xl text-pink-600 mb-2"></i>
+                            <h4 class="font-semibold text-pink-800">实践阶段</h4>
+                            <p class="text-pink-700 text-sm mt-1">技能培养与验证</p>
+                        </div>
+                        <div class="bg-pink-50 p-4 rounded-lg text-center">
+                            <i class="fa-solid fa-lightbulb text-3xl text-pink-600 mb-2"></i>
+                            <h4 class="font-semibold text-pink-800">创新阶段</h4>
+                            <p class="text-pink-700 text-sm mt-1">技术突破与改进</p>
+                        </div>
+                        <div class="bg-pink-50 p-4 rounded-lg text-center">
+                            <i class="fa-solid fa-industry text-3xl text-pink-600 mb-2"></i>
+                            <h4 class="font-semibold text-pink-800">产业化阶段</h4>
+                            <p class="text-pink-700 text-sm mt-1">价值实现与推广</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 教育路径设计卡片 -->
+            <div class="card md:col-span-4 p-6 flex flex-col relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+                <div class="relative flex-shrink-0">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-route text-2xl text-green-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">从幼儿园到院士的教育路径设计</h3>
+                    </div>
+                </div>
+                <div class="relative flex-grow">
+                    <canvas id="educationPathChart"></canvas>
+                </div>
+            </div>
+
+            <!-- 顶尖机构课程体系卡片 -->
+            <div class="card md:col-span-4 p-6 flex flex-col relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-orange"></div>
+                <div class="relative flex-shrink-0">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-university text-2xl text-orange-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">顶尖机构标准课程体系对比</h3>
+                    </div>
+                </div>
+                <div class="relative flex-grow overflow-x-auto">
+                    <table class="w-full min-w-full">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">机构</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">核心课程</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">教学特色</th>
+                                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">专业方向</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-3">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-school text-orange-600"></i>
+                                        <span class="font-medium text-gray-900">MIT</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-600">
+                                    <div>6.0001 计算机科学及编程导论</div>
+                                    <div>6.046 算法导论</div>
+                                    <div>6.033 计算机系统工程</div>
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-600">
+                                    <div>项目制学习(PBL)</div>
+                                    <div>独立活动期(IAP)</div>
+                                    <div>理论与实践融合</div>
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-600">
+                                    6-3计算机科学与工程<br>
+                                    6-4人工智能与决策<br>
+                                    6-5电气工程与计算
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-school text-orange-600"></i>
+                                        <span class="font-medium text-gray-900">斯坦福大学</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-600">
+                                    <div>CS106系列 编程抽象与算法</div>
+                                    <div>CS107 计算机系统</div>
+                                    <div>CS161 数据结构与算法</div>
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-600">
+                                    <div>创新精神培养</div>
+                                    <div>创业导向</div>
+                                    <div>跨学科融合</div>
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-600">
+                                    人工智能<br>
+                                    计算机系统<br>
+                                    人机交互<br>
+                                    理论计算机科学
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-school text-orange-600"></i>
+                                        <span class="font-medium text-gray-900">清华大学</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-600">
+                                    <div>程序设计基础(C/C++)</div>
+                                    <div>数据结构与算法</div>
+                                    <div>计算机组成与系统结构</div>
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-600">
+                                    <div>扎实理论基础</div>
+                                    <div>实践能力培养</div>
+                                    <div>系统思维训练</div>
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-600">
+                                    计算机科学与技术<br>
+                                    软件工程<br>
+                                    网络工程<br>
+                                    信息安全
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-school text-orange-600"></i>
+                                        <span class="font-medium text-gray-900">北京大学</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-600">
+                                    <div>计算概论</div>
+                                    <div>数据结构与算法</div>
+                                    <div>操作系统</div>
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-600">
+                                    <div>理论深度</div>
+                                    <div>科研能力培养</div>
+                                    <div>学术传统</div>
+                                </td>
+                                <td class="px-4 py-3 text-sm text-gray-600">
+                                    图灵班<br>
+                                    智班<br>
+                                    信班<br>
+                                    计算机科学技术
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 质量管理体系卡片 -->
+            <div class="card md:col-span-2 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-award text-2xl text-blue-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">质量管理体系应用</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="bg-blue-50 p-3 rounded-lg">
+                            <div class="font-semibold text-blue-800 mb-1">ISO9001在教育领域</div>
+                            <div class="text-blue-700 text-sm">促使教育机构明确职责，提高效率，确保教学质量稳定性</div>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded-lg">
+                            <div class="font-semibold text-blue-800 mb-1">PDCA循环应用</div>
+                            <div class="text-blue-700 text-sm">计划-执行-检查-改进的持续质量提升机制</div>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded-lg">
+                            <div class="font-semibold text-blue-800 mb-1">质量监控机制</div>
+                            <div class="text-blue-700 text-sm">常规教学检查、教学督导、学生满意度调查、同行评议</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 行业需求卡片 -->
+            <div class="card md:col-span-2 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-industry text-2xl text-purple-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">行业对人才的质量要求</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div class="bg-purple-50 p-3 rounded-lg">
+                            <div class="font-semibold text-purple-800 mb-1">制造业</div>
+                            <div class="text-purple-700 text-xs space-y-1">
+                                <div>• 跨学科知识</div>
+                                <div>• 数字孪生技术</div>
+                                <div>• 预测性维护</div>
+                                <div>• 2025年需求900万</div>
+                            </div>
+                        </div>
+                        <div class="bg-purple-50 p-3 rounded-lg">
+                            <div class="font-semibold text-purple-800 mb-1">医疗行业</div>
+                            <div class="text-purple-700 text-xs space-y-1">
+                                <div>• 医学图像分析</div>
+                                <div>• 医疗大数据处理</div>
+                                <div>• 隐私计算</div>
+                                <div>• 联邦学习</div>
+                            </div>
+                        </div>
+                        <div class="bg-purple-50 p-3 rounded-lg">
+                            <div class="font-semibold text-purple-800 mb-1">软件行业</div>
+                            <div class="text-purple-700 text-xs space-y-1">
+                                <div>• 全栈开发能力</div>
+                                <div>• 云原生技术</div>
+                                <div>• 容器化技术</div>
+                                <div>• 敏捷开发</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 中国本土化策略卡片 -->
+            <div class="card md:col-span-4 p-6 flex flex-col relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-red"></div>
+                <div class="relative flex-shrink-0">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-flag text-2xl text-red-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">中国国情下的本土化教育策略</h3>
+                    </div>
+                </div>
+                <div class="relative flex-grow grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-red-800 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-cogs"></i>新工科建设影响
+                        </h4>
+                        <div class="space-y-2">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle text-red-500 mt-1"></i>
+                                <span class="text-gray-700">跨学科融合培养模式</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle text-red-500 mt-1"></i>
+                                <span class="text-gray-700">实践能力培养强化</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle text-red-500 mt-1"></i>
+                                <span class="text-gray-700">面向未来的课程体系</span>
+                            </div>
+                        </div>
+
+                        <h4 class="font-semibold text-red-800 mb-3 mt-6 flex items-center gap-2">
+                            <i class="fa-solid fa-robot"></i>AI教育普及政策
+                        </h4>
+                        <div class="space-y-2">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle text-red-500 mt-1"></i>
+                                <span class="text-gray-700">2030年前基本普及AI教育</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle text-red-500 mt-1"></i>
+                                <span class="text-gray-700">大中小学一体化统筹推进</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle text-red-500 mt-1"></i>
+                                <span class="text-gray-700">建设"通用+特色"课程体系</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-red-800 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-graduation-cap"></i>培养方案特色
+                        </h4>
+                        <div class="space-y-2">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle text-red-500 mt-1"></i>
+                                <span class="text-gray-700">分类培养模式（学术型、应用型、复合型）</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle text-red-500 mt-1"></i>
+                                <span class="text-gray-700">产教融合机制（校企合作、实习基地）</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle text-red-500 mt-1"></i>
+                                <span class="text-gray-700">创新创业教育（课程、平台、竞赛）</span>
+                            </div>
+                        </div>
+
+                        <h4 class="font-semibold text-red-800 mb-3 mt-6 flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb"></i>实施建议
+                        </h4>
+                        <div class="space-y-2">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle text-red-500 mt-1"></i>
+                                <span class="text-gray-700">建立分层分类的教育体系</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle text-red-500 mt-1"></i>
+                                <span class="text-gray-700">强化师资队伍建设</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle text-red-500 mt-1"></i>
+                                <span class="text-gray-700">优化课程资源配置</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle text-red-500 mt-1"></i>
+                                <span class="text-gray-700">完善质量保障体系</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 双序列结构卡片 -->
+            <div class="card md:col-span-4 p-6 flex flex-col relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-teal"></div>
+                <div class="relative flex-shrink-0">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fa-solid fa-code-branch text-2xl text-teal-600"></i>
+                        <h3 class="text-xl font-bold text-gray-800">时间变化顺序与事情发展顺序的双序列结构</h3>
+                    </div>
+                </div>
+                <div class="relative flex-grow grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-teal-800 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-clock"></i>时间变化顺序：从基础到高级的递进式学习路径
+                        </h4>
+                        <div class="space-y-3">
+                            <div class="bg-teal-50 p-3 rounded-lg">
+                                <div class="font-semibold text-teal-800 mb-1">基础阶段 (0-2年)</div>
+                                <div class="text-teal-700 text-sm">概念建立与技能入门：计算机基础概念、简单编程语法、基本数据类型</div>
+                            </div>
+                            <div class="bg-teal-50 p-3 rounded-lg">
+                                <div class="font-semibold text-teal-800 mb-1">进阶阶段 (2-4年)</div>
+                                <div class="text-teal-700 text-sm">理论深化与实践提升：算法与数据结构、操作系统原理、计算机组成</div>
+                            </div>
+                            <div class="bg-teal-50 p-3 rounded-lg">
+                                <div class="font-semibold text-teal-800 mb-1">高级阶段 (4-6年)</div>
+                                <div class="text-teal-700 text-sm">专业方向与创新能力：选择专业方向、开展研究项目、发表学术论文</div>
+                            </div>
+                            <div class="bg-teal-50 p-3 rounded-lg">
+                                <div class="font-semibold text-teal-800 mb-1">专家阶段 (6年以上)</div>
+                                <div class="text-teal-700 text-sm">学术引领与产业贡献：成为领域专家、引领学科发展、推动产业进步</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-teal-800 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-tasks"></i>事情发展顺序：从理论到实践的转化路径
+                        </h4>
+                        <div class="space-y-3">
+                            <div class="bg-teal-50 p-3 rounded-lg">
+                                <div class="font-semibold text-teal-800 mb-1">问题识别与分析</div>
+                                <div class="text-teal-700 text-sm">需求调研、问题定义、可行性分析、方案设计</div>
+                            </div>
+                            <div class="bg-teal-50 p-3 rounded-lg">
+                                <div class="font-semibold text-teal-800 mb-1">理论学习与知识准备</div>
+                                <div class="text-teal-700 text-sm">文献调研、理论学习、技术评估、知识整合</div>
+                            </div>
+                            <div class="bg-teal-50 p-3 rounded-lg">
+                                <div class="font-semibold text-teal-800 mb-1">实践验证与方案优化</div>
+                                <div class="text-teal-700 text-sm">原型开发、实验测试、问题分析、方案优化</div>
+                            </div>
+                            <div class="bg-teal-50 p-3 rounded-lg">
+                                <div class="font-semibold text-teal-800 mb-1">产品化与产业化</div>
+                                <div class="text-teal-700 text-sm">系统集成、性能优化、质量保证、市场推广</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 总结卡片 -->
+            <div class="card md:col-span-4 p-6 flex flex-col justify-center items-center text-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-indigo"></div>
+                <div class="relative">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">总结与展望</h3>
+                    <p class="text-gray-600 max-w-4xl mx-auto mb-6">本研究构建了多层次复杂度评估模型，为计算机科学知识体系的分析和教育路径设计提供了系统性的理论框架和实践指导。通过五维度复杂度评估体系、DIKWP模型应用和双序列结构理论，为计算机科学教育的发展提供了新的思路和方法。</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                            <i class="fa-solid fa-download mr-2"></i>下载完整报告
+                        </button>
+                        <button class="bg-gray-200 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors">
+                            <i class="fa-solid fa-share-alt mr-2"></i>分享研究成果
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // 五维度复杂度雷达图
+    const complexityCtx = document.getElementById('complexityChart').getContext('2d');
+    const complexityChart = new Chart(complexityCtx, {
+        type: 'radar',
+        data: {
+            labels: ['时间复杂度', '空间复杂度', '概念复杂度', '结构复杂度', '行为复杂度'],
+            datasets: [{
+                label: '本科阶段复杂度',
+                data: [60, 40, 65, 45, 60],
+                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                borderColor: 'rgba(59, 130, 246, 1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(59, 130, 246, 1)'
+            }, {
+                label: '研究生阶段复杂度',
+                data: [80, 70, 80, 75, 70],
+                backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                borderColor: 'rgba(139, 92, 246, 1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(139, 92, 246, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(139, 92, 246, 1)'
+            }, {
+                label: '专家阶段复杂度',
+                data: [95, 90, 95, 90, 100],
+                backgroundColor: 'rgba(34, 197, 94, 0.2)',
+                borderColor: 'rgba(34, 197, 94, 1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(34, 197, 94, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(34, 197, 94, 1)'
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: {
+                        display: true,
+                        color: 'rgba(0, 0, 0, 0.1)'
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 100,
+                    ticks: {
+                        stepSize: 20,
+                        color: '#6b7280'
+                    },
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.1)'
+                    },
+                    pointLabels: {
+                        font: {
+                            size: 12,
+                            family: 'Inter'
+                        },
+                        color: '#374151'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            family: 'Inter'
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // 教育路径图
+    const educationPathCtx = document.getElementById('educationPathChart').getContext('2d');
+    const educationPathChart = new Chart(educationPathCtx, {
+        type: 'line',
+        data: {
+            labels: ['幼儿园', '小学', '中学', '本科', '硕士', '博士', '院士'],
+            datasets: [{
+                label: '时间复杂度',
+                data: [5, 15, 35, 60, 80, 95, 100],
+                borderColor: 'rgba(59, 130, 246, 1)',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                tension: 0.4,
+                fill: true
+            }, {
+                label: '空间复杂度',
+                data: [10, 20, 40, 50, 70, 85, 100],
+                borderColor: 'rgba(139, 92, 246, 1)',
+                backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                tension: 0.4,
+                fill: true
+            }, {
+                label: '概念复杂度',
+                data: [5, 15, 35, 65, 80, 95, 100],
+                borderColor: 'rgba(34, 197, 94, 1)',
+                backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                tension: 0.4,
+                fill: true
+            }, {
+                label: '结构复杂度',
+                data: [0, 10, 30, 45, 65, 80, 90],
+                borderColor: 'rgba(249, 115, 22, 1)',
+                backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                tension: 0.4,
+                fill: true
+            }, {
+                label: '行为复杂度',
+                data: [15, 30, 40, 60, 70, 90, 100],
+                borderColor: 'rgba(236, 72, 153, 1)',
+                backgroundColor: 'rgba(236, 72, 153, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        callback: function(value) {
+                            return value + '%';
+                        },
+                        color: '#6b7280'
+                    },
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.1)'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#6b7280'
+                    },
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.1)'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            family: 'Inter'
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+</html>
