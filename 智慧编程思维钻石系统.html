@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧编程思维钻石系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #FFFFFF;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 1.25rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        .highlight-gradient-blue {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0), rgba(59, 130, 246, 0.05));
+        }
+        .highlight-gradient-purple {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0), rgba(139, 92, 246, 0.05));
+        }
+        .highlight-gradient-green {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0), rgba(34, 197, 94, 0.05));
+        }
+        .highlight-gradient-orange {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0), rgba(249, 115, 22, 0.05));
+        }
+        .highlight-gradient-red {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0), rgba(239, 68, 68, 0.05));
+        }
+        .highlight-gradient-cyan {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0), rgba(6, 182, 212, 0.05));
+        }
+        .highlight-gradient-yellow {
+            background: linear-gradient(135deg, rgba(234, 179, 8, 0), rgba(234, 179, 8, 0.05));
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <div class="max-w-7xl mx-auto p-4 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+            <!-- 标题卡片 -->
+            <div class="card md:col-span-4 md:row-span-1 p-8 flex flex-col justify-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <div class="flex items-center gap-4 mb-4">
+                        <i class="fa-solid fa-gem text-4xl text-blue-500"></i>
+                        <h1 class="text-4xl md:text-5xl font-black text-gray-800">智慧编程思维钻石系统</h1>
+                    </div>
+                    <p class="text-xl text-gray-600 max-w-4xl">基于MIT 6.00课程的革命性知识产品，将计算机科学核心原理转化为可操作的思维工具和管理方法</p>
+                </div>
+            </div>
+
+            <!-- 课程价值卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-between relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">MIT 6.00课程核心价值</h2>
+                    <p class="text-gray-600 mb-4">提供完整的计算机科学思维体系，从基础编程到算法设计、从面向对象编程到计算模型构建的全方位知识结构。</p>
+                    <div class="flex items-center gap-2 text-purple-600">
+                        <i class="fa-solid fa-star"></i>
+                        <span class="font-semibold">渐进式复杂度梯度设计</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商业价值卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-center items-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+                <div class="relative text-center">
+                    <div class="text-6xl font-black text-green-600 mb-2">2000亿</div>
+                    <p class="text-xl font-semibold text-gray-800">2025年中国知识付费市场规模</p>
+                    <p class="text-gray-600 mt-2">高质量计算机科学教育内容具有巨大商业价值和复利效应</p>
+                </div>
+            </div>
+
+            <!-- 时间复杂度卡片 -->
+            <div class="card md:col-span-1 md:row-span-2 p-6 flex flex-col relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">时间复杂度</h3>
+                    <p class="text-gray-600 mb-4">学习时间效率与知识掌握程度的关系模型</p>
+                    <div class="flex-grow h-64">
+                        <canvas id="timeComplexityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 空间复杂度卡片 -->
+            <div class="card md:col-span-1 md:row-span-2 p-6 flex flex-col relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-orange"></div>
+                <div class="relative flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">空间复杂度</h3>
+                    <p class="text-gray-600 mb-4">知识存储密度与认知负荷的优化模型</p>
+                    <div class="flex-grow h-64">
+                        <canvas id="spaceComplexityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 概念复杂度卡片 -->
+            <div class="card md:col-span-1 md:row-span-2 p-6 flex flex-col relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative flex-grow flex flex-col">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">概念复杂度</h3>
+                    <p class="text-gray-600 mb-4">基于认知负荷理论的概念分层模型</p>
+                    <div class="flex-grow h-64">
+                        <canvas id="conceptComplexityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 结构与行为复杂度卡片 -->
+            <div class="card md:col-span-1 md:row-span-2 p-6 flex flex-col justify-around relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+                <div class="relative">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">结构复杂度</h3>
+                    <div class="space-y-2 text-gray-600">
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-green-500"></div><span>线性结构</span></div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-green-500"></div><span>树状结构</span></div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-green-500"></div><span>网络结构</span></div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-green-500"></div><span>异构结构</span></div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-green-500"></div><span>动态结构</span></div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">行为复杂度</h3>
+                    <div class="space-y-2 text-gray-600">
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-green-500"></div><span>反应性行为</span></div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-green-500"></div><span>流程性行为</span></div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-green-500"></div><span>适应性行为</span></div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-green-500"></div><span>学习性行为</span></div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-green-500"></div><span>创新性行为</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 全年龄段知识体系卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-cyan"></div>
+                <div class="relative">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">全年龄段知识体系</h2>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <i class="fa-solid fa-child text-3xl text-cyan-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">幼儿园-小学</p>
+                            <p class="text-sm text-gray-500">游戏化编程</p>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-user-graduate text-3xl text-cyan-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">中学-大学</p>
+                            <p class="text-sm text-gray-500">系统编程与算法</p>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-user-tie text-3xl text-cyan-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">研究生-院士</p>
+                            <p class="text-sm text-gray-500">前沿技术研究</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 跨领域融合卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-yellow"></div>
+                <div class="relative">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">跨领域知识融合</h2>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <i class="fa-solid fa-calculator text-3xl text-yellow-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">数学融合</p>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-flask-vial text-3xl text-yellow-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">物理融合</p>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-dna text-3xl text-yellow-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">生物学融合</p>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-chart-line text-3xl text-yellow-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">经济学融合</p>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-palette text-3xl text-yellow-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">艺术融合</p>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-briefcase text-3xl text-yellow-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">管理学融合</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 转化路径卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-red"></div>
+                <div class="relative">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">虚拟知识到现实生产转化</h2>
+                    <div class="flex justify-around items-center">
+                        <div class="text-center">
+                            <i class="fa-solid fa-lightbulb text-4xl text-red-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">企业管理应用</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right-long text-3xl text-gray-400"></i>
+                        <div class="text-center">
+                            <i class="fa-solid fa-school text-4xl text-red-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">教育行业创新</p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right-long text-3xl text-gray-400"></i>
+                        <div class="text-center">
+                            <i class="fa-solid fa-rocket text-4xl text-red-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">创新创业孵化</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 成功案例卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+                <div class="relative">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">成功案例数据</h2>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="text-4xl font-black text-green-600 mb-1">580万</div>
+                            <p class="text-gray-600">AI编程课程单条视频播放量</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-black text-green-600 mb-1">65%</div>
+                            <p class="text-gray-600">制造业知识变现利润率</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 管理标准卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">管理标准整合</h2>
+                    <div class="flex justify-around items-center">
+                        <div class="text-center">
+                            <i class="fa-solid fa-clipboard-check text-4xl text-blue-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">质量标准体系</p>
+                        </div>
+                        <div class="text-center">
+                            <i class="fa-solid fa-code-branch text-4xl text-blue-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">开发流程</p>
+                        </div>
+                        <div class="text-center">
+                            <i class="fa-solid fa-chart-pie text-4xl text-blue-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">评估指标</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产品形态卡片 -->
+            <div class="card md:col-span-2 md:row-span-1 p-6 flex flex-col justify-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">革命性产品形态</h2>
+                    <div class="flex justify-around items-center">
+                        <div class="text-center">
+                            <i class="fa-solid fa-book-open-reader text-4xl text-purple-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">教育产品</p>
+                        </div>
+                        <div class="text-center">
+                            <i class="fa-solid fa-server text-4xl text-purple-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">技术平台</p>
+                        </div>
+                        <div class="text-center">
+                            <i class="fa-solid fa-users text-4xl text-purple-500 mb-2"></i>
+                            <p class="font-semibold text-gray-700">生态社区</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 结语卡片 -->
+            <div class="card md:col-span-4 md:row-span-1 p-8 flex flex-col justify-center items-center text-center relative">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-cyan"></div>
+                <div class="relative">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">开启智慧编程思维新时代</h2>
+                    <p class="text-xl text-gray-600 max-w-4xl">
+                        "智慧编程思维钻石系统"不仅是一个教育产品，更是一个革命性的思维工具和价值创造平台，
+                        承载着推动教育公平、促进社会进步的重要使命。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // 时间复杂度图表
+    const timeCtx = document.getElementById('timeComplexityChart').getContext('2d');
+    new Chart(timeCtx, {
+        type: 'line',
+        data: {
+            labels: ['0%', '20%', '40%', '60%', '80%', '100%'],
+            datasets: [{
+                label: '时间复杂度',
+                data: [1, 2, 3, 5, 8, 13],
+                borderColor: 'rgb(59, 130, 246)',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { display: false },
+                    grid: { display: false },
+                    border: { display: false }
+                },
+                x: {
+                    ticks: { color: '#6b7280' },
+                    grid: { display: false },
+                    border: { display: false }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: { enabled: false }
+            }
+        }
+    });
+
+    // 空间复杂度图表
+    const spaceCtx = document.getElementById('spaceComplexityChart').getContext('2d');
+    new Chart(spaceCtx, {
+        type: 'line',
+        data: {
+            labels: ['0%', '20%', '40%', '60%', '80%', '100%'],
+            datasets: [{
+                label: '空间复杂度',
+                data: [10, 8, 6, 4, 2, 1],
+                borderColor: 'rgb(249, 115, 22)',
+                backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { display: false },
+                    grid: { display: false },
+                    border: { display: false }
+                },
+                x: {
+                    ticks: { color: '#6b7280' },
+                    grid: { display: false },
+                    border: { display: false }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: { enabled: false }
+            }
+        }
+    });
+
+    // 概念复杂度图表
+    const conceptCtx = document.getElementById('conceptComplexityChart').getContext('2d');
+    new Chart(conceptCtx, {
+        type: 'bar',
+        data: {
+            labels: ['0%', '20%', '40%', '60%', '80%', '100%'],
+            datasets: [{
+                label: '概念复杂度',
+                data: [1, 2, 3, 5, 8, 13],
+                backgroundColor: 'rgba(139, 92, 246, 0.6)',
+                borderColor: 'rgb(139, 92, 246)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { display: false },
+                    grid: { display: false },
+                    border: { display: false }
+                },
+                x: {
+                    ticks: { color: '#6b7280' },
+                    grid: { display: false },
+                    border: { display: false }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: { enabled: false }
+            }
+        }
+    });
+</script>
+</html>
