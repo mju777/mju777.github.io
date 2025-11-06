@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算机科学知识体系框架</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">   
+    <style>
+        body {
+            font-family: 'Noto Sans SC', 'Poppins', sans-serif;
+            background-color: #FFFFFF;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 1.25rem; /* 20px */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        .highlight-gradient-blue {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0), rgba(59, 130, 246, 0.05));
+        }
+        .highlight-gradient-green {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0), rgba(34, 197, 94, 0.05));
+        }
+        .highlight-gradient-purple {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0), rgba(139, 92, 246, 0.05));
+        }
+        .highlight-gradient-orange {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0), rgba(249, 115, 22, 0.05));
+        }
+        .highlight-gradient-red {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0), rgba(239, 68, 68, 0.05));
+        }
+        .highlight-gradient-teal {
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0), rgba(20, 184, 166, 0.05));
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <div class="max-w-7xl mx-auto p-4 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+            <!-- 标题卡片 -->
+            <div class="card md:col-span-4 p-8 flex flex-col justify-center items-center text-center">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative w-full">
+                    <h1 class="text-5xl md:text-6xl font-black text-gray-800 mb-4">计算机科学知识体系</h1>
+                    <p class="text-xl md:text-2xl text-gray-500 font-light">从幼儿园启蒙到院士级研究的全阶段框架</p>
+                </div>
+            </div>
+
+            <!-- 复杂度分析概述 -->
+            <div class="card md:col-span-2 p-8 flex flex-col justify-center">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">复杂度多维度分析</h2>
+                    <p class="text-gray-600 mb-6">从时间、空间、概念、结构和行为五个维度，构建计算机科学知识体系的复杂度评估框架。</p>
+                    <div class="flex items-center text-purple-600">
+                        <i class="fa-solid fa-layer-group text-2xl mr-3"></i>
+                        <span class="font-medium">0-100% 复杂度谱系</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 教育阶段概述 -->
+            <div class="card md:col-span-2 p-8 flex flex-col justify-center">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+                <div class="relative">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">教育全阶段覆盖</h2>
+                    <p class="text-gray-600 mb-6">从幼儿园(3-6岁)到院士级别(35岁以上)的完整教育体系，构建系统化的知识进阶路径。</p>
+                    <div class="flex items-center text-green-600">
+                        <i class="fa-solid fa-graduation-cap text-2xl mr-3"></i>
+                        <span class="font-medium">7个教育阶段</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 时间复杂度 -->
+            <div class="card md:col-span-4 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fa-solid fa-clock-rotate-left text-blue-500 mr-3"></i>
+                        时间复杂度的梯度演进
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                        <div class="bg-white p-4 rounded-lg border border-gray-100 shadow-sm text-center">
+                            <div class="text-blue-500 font-bold text-3xl mb-2">O(1)</div>
+                            <div class="text-gray-700 font-medium mb-1">常数时间</div>
+                            <div class="text-gray-500 text-sm">数组访问、哈希表</div>
+                            <div class="mt-2 text-xs text-gray-400">0-20%</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-gray-100 shadow-sm text-center">
+                            <div class="text-blue-500 font-bold text-3xl mb-2">O(log n)</div>
+                            <div class="text-gray-700 font-medium mb-1">对数时间</div>
+                            <div class="text-gray-500 text-sm">二分查找、平衡树</div>
+                            <div class="mt-2 text-xs text-gray-400">20-40%</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-gray-100 shadow-sm text-center">
+                            <div class="text-blue-500 font-bold text-3xl mb-2">O(n)</div>
+                            <div class="text-gray-700 font-medium mb-1">线性时间</div>
+                            <div class="text-gray-500 text-sm">线性扫描、BFS</div>
+                            <div class="mt-2 text-xs text-gray-400">40-60%</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-gray-100 shadow-sm text-center">
+                            <div class="text-blue-500 font-bold text-3xl mb-2">O(n log n)</div>
+                            <div class="text-gray-700 font-medium mb-1">线性对数</div>
+                            <div class="text-gray-500 text-sm">归并排序、快速排序</div>
+                            <div class="mt-2 text-xs text-gray-400">60-80%</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-gray-100 shadow-sm text-center">
+                            <div class="text-blue-500 font-bold text-3xl mb-2">O(n²)</div>
+                            <div class="text-gray-700 font-medium mb-1">平方时间</div>
+                            <div class="text-gray-500 text-sm">冒泡排序、插入排序</div>
+                            <div class="mt-2 text-xs text-gray-400">80-100%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 教育阶段图表 -->
+            <div class="card md:col-span-2 p-8 flex flex-col">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+                <div class="relative flex-grow">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-chalkboard-user text-green-500 mr-3"></i>
+                        教育阶段分布
+                    </h3>
+                    <div class="h-64">
+                        <canvas id="educationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 复杂度分布图表 -->
+            <div class="card md:col-span-2 p-8 flex flex-col">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative flex-grow">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-chart-pie text-purple-500 mr-3"></i>
+                        复杂度维度分布
+                    </h3>
+                    <div class="h-64">
+                        <canvas id="complexityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 空间复杂度 -->
+            <div class="card md:col-span-2 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-orange"></div>
+                <div class="relative">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-memory text-orange-500 mr-3"></i>
+                        空间复杂度评估
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">O(1) 常数空间</span>
+                            <div class="w-32 bg-gray-200 rounded-full h-2">
+                                <div class="bg-orange-500 h-2 rounded-full" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">O(n) 线性空间</span>
+                            <div class="w-32 bg-gray-200 rounded-full h-2">
+                                <div class="bg-orange-500 h-2 rounded-full" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">O(n²) 平方空间</span>
+                            <div class="w-32 bg-gray-200 rounded-full h-2">
+                                <div class="bg-orange-500 h-2 rounded-full" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">O(2ⁿ) 指数空间</span>
+                            <div class="w-32 bg-gray-200 rounded-full h-2">
+                                <div class="bg-orange-500 h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 概念复杂度 -->
+            <div class="card md:col-span-2 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-teal"></div>
+                <div class="relative">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fa-solid fa-brain text-teal-500 mr-3"></i>
+                        概念复杂度层次
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">基础概念 (变量、函数)</span>
+                            <div class="w-32 bg-gray-200 rounded-full h-2">
+                                <div class="bg-teal-500 h-2 rounded-full" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">结构化概念 (数据结构)</span>
+                            <div class="w-32 bg-gray-200 rounded-full h-2">
+                                <div class="bg-teal-500 h-2 rounded-full" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">抽象概念 (算法证明)</span>
+                            <div class="w-32 bg-gray-200 rounded-full h-2">
+                                <div class="bg-teal-500 h-2 rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">前沿概念 (量子计算)</span>
+                            <div class="w-32 bg-gray-200 rounded-full h-2">
+                                <div class="bg-teal-500 h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 理论到实践 -->
+            <div class="card md:col-span-4 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-red"></div>
+                <div class="relative">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fa-solid fa-arrow-right-arrow-left text-red-500 mr-3"></i>
+                        从理论到实践的知识体系层次
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm">
+                            <div class="text-center mb-4">
+                                <i class="fa-solid fa-infinity text-4xl text-red-500 mb-2"></i>
+                                <h4 class="text-xl font-bold text-gray-800">虚拟知识层面</h4>
+                            </div>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-red-400 mt-1 mr-2"></i>
+                                    <span>数学基础 (离散数学、线性代数)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-red-400 mt-1 mr-2"></i>
+                                    <span>逻辑理论 (形式逻辑、算法逻辑)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-red-400 mt-1 mr-2"></i>
+                                    <span>计算理论 (可计算性、复杂度)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm">
+                            <div class="text-center mb-4">
+                                <i class="fa-solid fa-microchip text-4xl text-red-500 mb-2"></i>
+                                <h4 class="text-xl font-bold text-gray-800">现实生产层面</h4>
+                            </div>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-red-400 mt-1 mr-2"></i>
+                                    <span>硬件系统设计 (数字逻辑、体系结构)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-red-400 mt-1 mr-2"></i>
+                                    <span>软件系统开发 (操作系统、编译器)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-red-400 mt-1 mr-2"></i>
+                                    <span>应用系统开发 (企业级应用、移动应用)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm">
+                            <div class="text-center mb-4">
+                                <i class="fa-solid fa-gears text-4xl text-red-500 mb-2"></i>
+                                <h4 class="text-xl font-bold text-gray-800">转化机制</h4>
+                            </div>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-red-400 mt-1 mr-2"></i>
+                                    <span>基础研究 → 技术开发</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-red-400 mt-1 mr-2"></i>
+                                    <span>成果转化 → 产业化发展</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-check-circle text-red-400 mt-1 mr-2"></i>
+                                    <span>技术标准制定与推广</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 权威标准 -->
+            <div class="card md:col-span-4 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fa-solid fa-scroll text-blue-500 mr-3"></i>
+                        权威标准与规范体系
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-800 mb-3">顶尖院校标准</h4>
+                            <div class="bg-white p-4 rounded-lg border border-gray-100 shadow-sm mb-4">
+                                <div class="flex items-center mb-2">
+                                    <i class="fa-solid fa-university text-blue-500 mr-2"></i>
+                                    <span class="font-medium">MIT 计算机科学</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">177个学分，强调计算思维和创新能力培养</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
+                                <div class="flex items-center mb-2">
+                                    <i class="fa-solid fa-university text-blue-500 mr-2"></i>
+                                    <span class="font-medium">清华大学计算机</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">160个学分，包含46学分通识教育课程</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-800 mb-3">企业与国际标准</h4>
+                            <div class="bg-white p-4 rounded-lg border border-gray-100 shadow-sm mb-4">
+                                <div class="flex items-center mb-2">
+                                    <i class="fa-solid fa-building text-blue-500 mr-2"></i>
+                                    <span class="font-medium">Google 技术标准</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">Go语言、Protobuf、Kubernetes等开源标准</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
+                                <div class="flex items-center mb-2">
+                                    <i class="fa-solid fa-globe text-blue-500 mr-2"></i>
+                                    <span class="font-medium">IEEE/ACM 标准</span>
+                                </div>
+                                <p class="text-gray-600 text-sm">CS2023计算机科学教育标准框架</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // 教育阶段图表
+    const educationCtx = document.getElementById('educationChart').getContext('2d');
+    new Chart(educationCtx, {
+        type: 'bar',
+        data: {
+            labels: ['幼儿园', '小学', '初中', '高中', '本科', '硕士', '博士/院士'],
+            datasets: [{
+                label: '平均年龄',
+                data: [4.5, 9, 13.5, 16.5, 20, 23.5, 28],
+                backgroundColor: [
+                    'rgba(34, 197, 94, 0.2)',
+                    'rgba(34, 197, 94, 0.3)',
+                    'rgba(34, 197, 94, 0.4)',
+                    'rgba(34, 197, 94, 0.5)',
+                    'rgba(34, 197, 94, 0.6)',
+                    'rgba(34, 197, 94, 0.7)',
+                    'rgba(34, 197, 94, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(34, 197, 94, 1)',
+                    'rgba(34, 197, 94, 1)',
+                    'rgba(34, 197, 94, 1)',
+                    'rgba(34, 197, 94, 1)',
+                    'rgba(34, 197, 94, 1)',
+                    'rgba(34, 197, 94, 1)',
+                    'rgba(34, 197, 94, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: '年龄 (岁)'
+                    }
+                }
+            }
+        }
+    });
+
+    // 复杂度维度图表
+    const complexityCtx = document.getElementById('complexityChart').getContext('2d');
+    new Chart(complexityCtx, {
+        type: 'radar',
+        data: {
+            labels: ['时间复杂度', '空间复杂度', '概念复杂度', '结构复杂度', '行为复杂度'],
+            datasets: [{
+                label: '整体复杂度分布',
+                data: [85, 70, 90, 80, 75],
+                backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                borderColor: 'rgba(139, 92, 246, 1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(139, 92, 246, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(139, 92, 246, 1)'
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: {
+                        display: true
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
+            }
+        }
+    });
+</script>
+</html>
